@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import logoImg from "../../Mockups/Logo.png";
 
@@ -131,13 +132,13 @@ export default function Hero() {
               activities.
             </p>
             <div className="flex flex-col items-center gap-4">
-              <button
-                type="button"
+              <Link
+                href="/Waitlist"
                 className="group inline-flex w-fit items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-24 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FCF9ED]"
               >
                 <EnvelopeIcon className="h-6 w-6 shrink-0" />
                 Join the Waitlist
-              </button>
+              </Link>
               <p className="flex items-center gap-1.5 text-sm font-normal text-neutral-500">
                 No spam, just updates about our Calgary launch
                 <SparkleIcon

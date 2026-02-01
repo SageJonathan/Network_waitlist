@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function EnvelopeIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -53,13 +55,13 @@ export default function CTA() {
         </p>
         <div className="mx-auto mt-6 max-w-md rounded-3xl bg-white/15 px-8 py-8 shadow-xl backdrop-blur-md md:px-12 md:py-10">
           <div className="flex w-full flex-col items-center gap-3">
-            <button
-              type="button"
+            <Link
+              href="/Waitlist"
               className="inline-flex w-3/4 items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
             >
               <EnvelopeIcon className="h-5 w-5 shrink-0" />
               Join the Waitlist
-            </button>
+            </Link>
             <p className="text-center text-sm font-normal text-white/80">
               No spam, just updates about our Calgary launch ✨
             </p>
