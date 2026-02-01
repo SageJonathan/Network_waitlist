@@ -10,7 +10,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Humanae – Networking that doesn't feel like work",
-  description: "Meet amazing people doing things you actually love. Join the waitlist.",
+  description:
+    "Meet amazing people doing things you actually love. Join the waitlist.",
+  icons: {
+    icon: "/Favicon.png",
+  },
 };
 
 export default function RootLayout({
