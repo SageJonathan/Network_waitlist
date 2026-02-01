@@ -45,14 +45,14 @@ export default function CTA() {
       />
 
       <div className="relative mx-auto max-w-2xl">
-        <div className="rounded-3xl bg-white/15 px-8 py-12 shadow-xl backdrop-blur-md md:px-12 md:py-16">
-          <h2 className="text-center text-2xl font-bold text-white md:text-3xl lg:text-4xl">
-            Ready to meet your people?
-          </h2>
-          <p className="mt-4 text-center text-base font-normal leading-relaxed text-white/95 md:text-lg">
-            Join the waitlist and be the first to know when we launch in Calgary.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-3">
+        <h2 className="text-center text-2xl font-bold text-white md:text-3xl lg:text-4xl">
+          Ready to meet your people?
+        </h2>
+        <p className="mt-4 text-center text-base font-normal leading-relaxed text-white/95 md:text-lg">
+          Join the waitlist and be the first to know when we launch in Calgary.
+        </p>
+        <div className="mt-8 rounded-3xl bg-white/15 px-8 py-12 shadow-xl backdrop-blur-md md:px-12 md:py-16">
+          <div className="flex flex-col items-center gap-3">
             <button
               type="button"
               className="inline-flex w-fit items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
