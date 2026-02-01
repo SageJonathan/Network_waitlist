@@ -108,7 +108,7 @@ const activities = [
     label: "Fitness Groups",
     iconBg: "#EC4899",
     iconGradientFrom: "#EC4899",
-    iconGradientTo: "#7C3AED",
+    iconGradientTo: "#c43d7a",
     Icon: DumbbellsIcon,
   },
   {
