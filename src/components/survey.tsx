@@ -4,6 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 import SuccessModal from "@/components/success-modal";
+import {
+  sanitizeSurveyPayload,
+  validateSurveyForm,
+} from "@/utils/sanitation";
 
 const NETWORKING_PAIN_OPTIONS = [
   "Too transactional",
@@ -51,6 +55,7 @@ export default function Survey() {
   const [featureOther, setFeatureOther] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   function toggleNetworkingPain(option: string) {
     setNetworkingPainSelected((prev) => {
@@ -81,14 +86,29 @@ export default function Survey() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setErrors({});
+    const payload = {
+      networkingPainSelected: [...networkingPainSelected],
+      networkingPain,
+      struggleSelected: [...struggleSelected],
+      struggleOther,
+      featureSelected: [...featureSelected],
+      featureOther,
+    };
+    const { valid, errors: validationErrors } = validateSurveyForm(payload);
+    if (!valid) {
+      setErrors(validationErrors);
+      return;
+    }
+    const sanitized = sanitizeSurveyPayload(payload);
     setIsSubmitting(true);
     try {
-      // Placeholder: call server action to save survey responses
-      // await submitSurveyResponses({ networkingPainSelected: [...networkingPainSelected], networkingPain, careerDevPain, struggleSelected: [...struggleSelected], struggleOther, featureSelected: [...featureSelected], featureOther });
+      // Placeholder: call server action with sanitized payload (use parameterized queries)
+      // await submitSurveyResponses(sanitized);
       await new Promise((r) => setTimeout(r, 600));
       setShowSuccessModal(true);
     } catch {
-      // TODO: show error state
+      setErrors({ form: "Something went wrong. Please try again." });
     } finally {
       setIsSubmitting(false);
     }
@@ -120,6 +140,11 @@ export default function Survey() {
           onSubmit={handleSubmit}
           className="-rotate-2 rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:rotate-0 md:p-8"
         >
+          {errors.form && (
+            <p className="mb-4 text-sm font-medium text-red-600" role="alert">
+              {errors.form}
+            </p>
+          )}
           {/* Networking events */}
           <label className="mb-2 block text-sm font-bold text-neutral-800">
             What frustrates you about networking events?

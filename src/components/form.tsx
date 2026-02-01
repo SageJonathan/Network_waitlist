@@ -3,6 +3,10 @@
 import { useState } from "react";
 
 import SuccessModal from "@/components/success-modal";
+import {
+  sanitizeWaitlistPayload,
+  validateWaitlistForm,
+} from "@/utils/sanitation";
 
 function EnvelopeIcon({ className }: { className?: string }) {
   return (
@@ -73,6 +77,7 @@ export default function Form() {
   const [howDidYouHear, setHowDidYouHear] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   function toggleActivity(activity: string) {
     setSelectedActivities((prev) => {
@@ -85,15 +90,29 @@ export default function Form() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setErrors({});
+    const payload = {
+      name,
+      email,
+      activities: [...selectedActivities],
+      availability,
+      howDidYouHear,
+    };
+    const { valid, errors: validationErrors } = validateWaitlistForm(payload);
+    if (!valid) {
+      setErrors(validationErrors);
+      return;
+    }
+    const sanitized = sanitizeWaitlistPayload(payload);
     setIsSubmitting(true);
     try {
-      // Placeholder: call server action to save waitlist entry
-      // const result = await submitWaitlistEntry({ name, email, activities: [...selectedActivities], availability, howDidYouHear });
+      // Placeholder: call server action with sanitized payload (use parameterized queries)
+      // const result = await submitWaitlistEntry(sanitized);
       // if (!result.success) throw new Error(result.error);
       await new Promise((r) => setTimeout(r, 600));
       setShowSuccessModal(true);
     } catch {
-      // TODO: show error state to user
+      setErrors({ form: "Something went wrong. Please try again." });
     } finally {
       setIsSubmitting(false);
     }
@@ -106,6 +125,11 @@ export default function Form() {
           onSubmit={handleSubmit}
           className="rotate-2 rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:rotate-0 md:p-8"
         >
+          {errors.form && (
+            <p className="mb-4 text-sm font-medium text-red-600" role="alert">
+              {errors.form}
+            </p>
+          )}
           {/* Your Name */}
           <label className="mb-2 block text-sm font-bold text-neutral-800">
             Your Name <span className="text-red-600">*</span>
@@ -116,14 +140,24 @@ export default function Form() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Jane Smith"
-            className="mb-6 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "name-error" : undefined}
+            className={`mb-1 w-full rounded-xl border bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+              errors.name ? "border-red-500" : "border-neutral-300"
+            }`}
           />
+          {errors.name && (
+            <p id="name-error" className="mb-6 text-sm text-red-600">
+              {errors.name}
+            </p>
+          )}
+          {!errors.name && <div className="mb-6" />}
 
           {/* Email Address */}
           <label className="mb-2 block text-sm font-bold text-neutral-800">
             Email Address <span className="text-red-600">*</span>
           </label>
-          <div className="relative mb-6">
+          <div className="relative mb-1">
             <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400">
               <EnvelopeIcon className="h-5 w-5" />
             </span>
@@ -133,9 +167,19 @@ export default function Form() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="jane@example.com"
-              className="w-full rounded-xl border border-neutral-300 bg-white py-3 pl-12 pr-4 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className={`w-full rounded-xl border bg-white py-3 pl-12 pr-4 text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+                errors.email ? "border-red-500" : "border-neutral-300"
+              }`}
             />
           </div>
+          {errors.email && (
+            <p id="email-error" className="mb-6 text-sm text-red-600">
+              {errors.email}
+            </p>
+          )}
+          {!errors.email && <div className="mb-6" />}
 
           {/* What activities interest you? */}
           <label className="mb-3 block text-sm font-bold text-neutral-800">
