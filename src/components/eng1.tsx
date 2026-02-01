@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 function CoffeeIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -87,29 +91,39 @@ const activities = [
     id: "coffee",
     label: "Coffee Walks",
     iconBg: "#F97316",
+    iconGradientFrom: "#F97316",
+    iconGradientTo: "#ea580c",
     Icon: CoffeeIcon,
   },
   {
     id: "hiking",
     label: "Hiking Crews",
     iconBg: "#22C55E",
+    iconGradientFrom: "#22C55E",
+    iconGradientTo: "#16a34a",
     Icon: MountainsIcon,
   },
   {
     id: "fitness",
     label: "Fitness Groups",
     iconBg: "#EC4899",
+    iconGradientFrom: "#EC4899",
+    iconGradientTo: "#7C3AED",
     Icon: DumbbellsIcon,
   },
   {
     id: "book",
     label: "Book Clubs",
     iconBg: "#8B5CF6",
+    iconGradientFrom: "#8B5CF6",
+    iconGradientTo: "#6d28d9",
     Icon: BookIcon,
   },
 ] as const;
 
 export default function Eng1() {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+
   return (
     <section className="bg-white px-6 py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl">
@@ -125,14 +139,22 @@ export default function Eng1() {
         </header>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-8">
-          {activities.map(({ id, label, iconBg, Icon }) => (
+          {activities.map(({ id, label, iconBg, iconGradientFrom, iconGradientTo, Icon }) => (
             <div
               key={id}
-              className="flex flex-col items-center rounded-2xl bg-[#FAFAF9] px-6 py-8"
+              className="flex flex-col items-center rounded-2xl bg-[#FAFAF9] px-6 py-8 transition-all duration-200 hover:bg-white hover:shadow-[0_0_0_2px_rgba(255,239,219,0.8),0_2px_12px_rgba(0,0,0,0.06)]"
+              onMouseEnter={() => setHoveredId(id)}
+              onMouseLeave={() => setHoveredId(null)}
             >
               <div
-                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-white"
-                style={{ backgroundColor: iconBg }}
+                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-white transition-all duration-200"
+                style={{
+                  backgroundColor: hoveredId === id ? undefined : iconBg,
+                  backgroundImage:
+                    hoveredId === id
+                      ? `linear-gradient(to right, ${iconGradientFrom}, ${iconGradientTo})`
+                      : undefined,
+                }}
               >
                 <Icon className="h-8 w-8" />
               </div>
