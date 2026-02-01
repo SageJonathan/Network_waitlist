@@ -38,7 +38,7 @@ export default function Eng4() {
           {steps.map(({ id, title, description }) => (
             <div
               key={id}
-              className="flex items-start gap-6 transition-transform duration-200 hover:scale-105"
+              className="flex items-center gap-6 transition-transform duration-200 hover:scale-105"
             >
               <div
                 className="flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center rounded-2xl text-white shadow-md md:h-20 md:w-20"
@@ -48,7 +48,7 @@ export default function Eng4() {
               >
                 <span className="text-2xl font-bold md:text-3xl">{id}</span>
               </div>
-              <div className="flex-1 pt-1">
+              <div className="flex-1">
                 <h3 className="text-lg font-bold text-[#1A1A1A]">{title}</h3>
                 <p className="mt-1 text-base font-normal leading-relaxed text-neutral-600">
                   {description}
