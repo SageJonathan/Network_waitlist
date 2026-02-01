@@ -123,6 +123,7 @@ const activities = [
 
 export default function Eng1() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [iconHoveredId, setIconHoveredId] = useState<string | null>(null);
 
   return (
     <section className="bg-white px-6 py-16 md:py-20 lg:py-24">
@@ -146,18 +147,20 @@ export default function Eng1() {
               onMouseEnter={() => setHoveredId(id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div
-                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-white transition-all duration-200"
-                style={{
-                  backgroundColor: hoveredId === id ? undefined : iconBg,
-                  backgroundImage:
-                    hoveredId === id
-                      ? `linear-gradient(to right, ${iconGradientFrom}, ${iconGradientTo})`
-                      : undefined,
-                }}
-              >
-                <Icon className="h-8 w-8" />
-              </div>
+                <div
+                  className={`flex h-16 w-16 shrink-0 cursor-default items-center justify-center rounded-2xl text-white transition-all duration-200 ${iconHoveredId === id ? "rotate-8" : ""}`}
+                  style={{
+                    backgroundColor: hoveredId === id ? undefined : iconBg,
+                    backgroundImage:
+                      hoveredId === id
+                        ? `linear-gradient(to right, ${iconGradientFrom}, ${iconGradientTo})`
+                        : undefined,
+                  }}
+                  onMouseEnter={() => setIconHoveredId(id)}
+                  onMouseLeave={() => setIconHoveredId(null)}
+                >
+                  <Icon className="h-8 w-8" />
+                </div>
               <p className="mt-4 text-center text-base font-semibold text-neutral-900">
                 {label}
               </p>
