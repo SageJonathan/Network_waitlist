@@ -40,5 +40,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 Mockups/
-public/*.png
-public/*.webp
