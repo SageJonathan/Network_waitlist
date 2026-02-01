@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import SuccessModal from "@/components/success-modal";
@@ -41,6 +42,9 @@ const FEATURE_OPTIONS = [
 ];
 
 export default function Survey() {
+  const searchParams = useSearchParams();
+  const waitlistId = searchParams.get("waitlist_id") ?? undefined;
+
   const [networkingPainSelected, setNetworkingPainSelected] = useState<
     Set<string>
   >(new Set());
@@ -103,8 +107,9 @@ export default function Survey() {
     const sanitized = sanitizeSurveyPayload(payload);
     setIsSubmitting(true);
     try {
-      // Placeholder: call server action with sanitized payload (use parameterized queries)
-      // await submitSurveyResponses(sanitized);
+      // Placeholder: call server action with sanitized payload (use parameterized queries).
+      // Pass waitlist_id so the survey row can be linked to the waitlist entry.
+      // await submitSurveyResponses({ ...sanitized, waitlist_id: waitlistId });
       await new Promise((r) => setTimeout(r, 600));
       setShowSuccessModal(true);
     } catch {
