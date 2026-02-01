@@ -41,12 +41,12 @@ export default function Eng4() {
               className="flex items-center gap-6"
             >
               <div
-                className="flex h-[4.5rem] w-[4.5rem] shrink-0 -rotate-2 items-center justify-center rounded-2xl text-white shadow-md transition-transform duration-200 hover:rotate-0 md:h-20 md:w-20"
+                className="flex h-16 w-16 shrink-0 -rotate-2 items-center justify-center rounded-2xl text-white shadow-md transition-transform duration-200 hover:rotate-0 md:h-[4.25rem] md:w-[4.25rem]"
                 style={{
                   background: "linear-gradient(180deg, #F89B37 0%, #EC4899 100%)",
                 }}
               >
-                <span className="text-2xl font-bold md:text-3xl">{id}</span>
+                <span className="text-xl font-bold md:text-2xl">{id}</span>
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-[#1A1A1A]">{title}</h3>
