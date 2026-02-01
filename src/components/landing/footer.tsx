@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer
@@ -8,7 +10,7 @@ export default function Footer() {
     >
       <div className="mx-auto flex max-w-md flex-col items-center gap-2 text-center">
         <div className="flex items-center justify-center">
-          <img
+          <Image
             src="/Logo.png"
             alt="Humanae"
             width={120}
