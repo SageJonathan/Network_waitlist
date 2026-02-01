@@ -1,3 +1,4 @@
+import type { SurveyFormData, WaitlistFormData } from "@/types/forms";
 
 const LIMITS = {
   name: 200,
@@ -86,15 +87,6 @@ function email(value: string): string | null {
   return EMAIL_REGEX.test(trimmed) ? null : "Please enter a valid email address";
 }
 
-export type WaitlistFormData = {
-  name: string;
-  email: string;
-  activities: string[];
-  availability: string;
-  howDidYouHear: string;
-};
-
-
 // Component validation & sanitization
 export function validateWaitlistForm(data: WaitlistFormData): ValidationResult {
   const errors: Record<string, string> = {};
@@ -129,16 +121,7 @@ export function validateWaitlistForm(data: WaitlistFormData): ValidationResult {
   };
 }
 
-export type SurveyFormData = {
-  networkingPainSelected?: string[];
-  networkingPain?: string;
-  careerDevPain?: string;
-  struggleSelected?: string[];
-  struggleOther?: string;
-  featureSelected?: string[];
-  featureOther?: string;
-};
-
+export type { SurveyFormData, WaitlistFormData } from "@/types/forms";
 
 export function validateSurveyForm(data: SurveyFormData): ValidationResult {
   const errors: Record<string, string> = {};

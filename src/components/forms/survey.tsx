@@ -4,11 +4,9 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-import SuccessModal from "@/components/success-modal";
-import {
-  sanitizeSurveyPayload,
-  validateSurveyForm,
-} from "@/utils/sanitation";
+import { submitSurveyResponses } from "@/actions";
+import SuccessModal from "@/components/modals/success-modal";
+import { sanitizeSurveyPayload, validateSurveyForm } from "@/utils/sanitation";
 
 const NETWORKING_PAIN_OPTIONS = [
   "Too transactional",
@@ -50,11 +48,11 @@ export default function Survey() {
   >(new Set());
   const [networkingPain, setNetworkingPain] = useState("");
   const [struggleSelected, setStruggleSelected] = useState<Set<string>>(
-    new Set()
+    new Set(),
   );
   const [struggleOther, setStruggleOther] = useState("");
   const [featureSelected, setFeatureSelected] = useState<Set<string>>(
-    new Set()
+    new Set(),
   );
   const [featureOther, setFeatureOther] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -107,10 +105,11 @@ export default function Survey() {
     const sanitized = sanitizeSurveyPayload(payload);
     setIsSubmitting(true);
     try {
-      // Placeholder: call server action with sanitized payload (use parameterized queries).
-      // Pass waitlist_id so the survey row can be linked to the waitlist entry.
-      // await submitSurveyResponses({ ...sanitized, waitlist_id: waitlistId });
-      await new Promise((r) => setTimeout(r, 600));
+      const result = await submitSurveyResponses({
+        ...sanitized,
+        waitlist_id: waitlistId,
+      });
+      if (!result.success) throw new Error(result.error);
       setShowSuccessModal(true);
     } catch {
       setErrors({ form: "Something went wrong. Please try again." });
@@ -183,7 +182,6 @@ export default function Survey() {
             rows={2}
             className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
           />
-
 
           {/* Career struggles */}
           <label className="mb-2 block text-sm font-bold text-neutral-800">
@@ -276,7 +274,7 @@ export default function Survey() {
         open={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
         title="Thanks for sharing"
-        message="Your input helps us build something you&apos;ll actually love. 
+        message="Your input helps us build something you'll actually love. 
         We look forward to building it with you."
         primaryAction={{ label: "Back to home", href: "/" }}
       />

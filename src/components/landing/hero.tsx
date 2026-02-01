@@ -1,16 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import logoImg from "../../Mockups/Logo.png";
-
 function Logo() {
   return (
     <div className="flex items-center gap-2">
       <Image
-        src={logoImg}
+        src="/Logo.png"
         alt="Humanae"
-        width={logoImg.width}
-        height={logoImg.height}
+        width={120}
+        height={28}
         className="h-7 w-auto shrink-0"
         priority
       />

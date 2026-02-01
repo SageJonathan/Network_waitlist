@@ -1,5 +1,5 @@
-import Form from "@/components/form";
-import WaitlistHero from "@/components/waitlisthero";
+import Form from "@/components/forms/waitlist";
+import WaitlistHero from "@/components/forms/waitlisthero";
 
 export default function Waitlist() {
   return (
