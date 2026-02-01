@@ -11,22 +11,17 @@ export type SubmitSurveyResult =
 function toSurveyRow(data: SurveyFormData): SurveyInsert {
   return {
     ...(data.networkingPainSelected?.length
-      ? { networking_pain_selected: data.networkingPainSelected }
+      ? { networking_selected: data.networkingPainSelected }
       : {}),
-    ...(data.networkingPain != null
-      ? { networking_pain: data.networkingPain }
-      : {}),
-    ...(data.careerDevPain != null
-      ? { career_dev_pain: data.careerDevPain }
-      : {}),
+    networking_other: data.networkingPain ?? null,
     ...(data.struggleSelected?.length
-      ? { struggle_selected: data.struggleSelected }
+      ? { career_selected: data.struggleSelected }
       : {}),
-    ...(data.struggleOther != null ? { struggle_other: data.struggleOther } : {}),
+    career_other: data.struggleOther ?? data.careerDevPain ?? null,
     ...(data.featureSelected?.length
       ? { feature_selected: data.featureSelected }
       : {}),
-    ...(data.featureOther != null ? { feature_other: data.featureOther } : {}),
+    feature_other: data.featureOther ?? null,
   };
 }
 

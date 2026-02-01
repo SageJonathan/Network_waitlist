@@ -8,13 +8,13 @@ export type SubmitWaitlistResult =
   | { success: true }
   | { success: false; error: string };
 
-function toWaitlistRow(data: WaitlistFormData): Omit<WaitlistInsert, "id"> {
+function toWaitlistRow(data: WaitlistFormData): WaitlistInsert {
   return {
     name: data.name,
     email: data.email,
     ...(data.activities?.length ? { activities: data.activities } : {}),
-    ...(data.availability ? { availability: data.availability } : {}),
-    ...(data.howDidYouHear ? { how_did_you_hear: data.howDidYouHear } : {}),
+    availability: data.availability ?? "",
+    funnel: data.howDidYouHear ?? "",
   };
 }
 
