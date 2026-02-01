@@ -7,7 +7,7 @@ const steps = [
   },
   {
     id: 2,
-    title: "Join a group",
+    title: "Join a club or event",
     description:
       "Connect with others who are just as excited as you are",
   },
@@ -15,7 +15,7 @@ const steps = [
     id: 3,
     title: "Show up & shine",
     description:
-      "Meet in person, have fun, and build real friendships",
+      "Meet in person, have fun, and build a real network",
   },
 ] as const;
 

@@ -1,15 +1,14 @@
 import Image from "next/image";
-
-import logoImg from "../../Mockups/Logo.png";
+import Link from "next/link";
 
 function Logo() {
   return (
     <div className="flex items-center gap-2">
       <Image
-        src={logoImg}
+        src="/Logo.png"
         alt="Humanae"
-        width={logoImg.width}
-        height={logoImg.height}
+        width={120}
+        height={28}
         className="h-7 w-auto shrink-0"
         priority
       />
@@ -117,7 +116,7 @@ export default function Hero() {
           <div className="mt-8 flex flex-col gap-6">
             <div className="inline-flex w-fit -rotate-2 items-center gap-2 rounded-full border border-orange-200 bg-[#FFEEDD] px-4 py-2 text-sm font-normal text-neutral-800">
               <span aria-hidden>🇨🇦</span>
-              <span>Launching in Calgary</span>
+              <span className="text-[#D52B1E]">Launching in Calgary</span>
             </div>
             <h1 className="text-3xl font-bold leading-tight text-neutral-900 md:text-4xl lg:text-5xl">
               Networking that doesn&apos;t feel like{" "}
@@ -131,13 +130,13 @@ export default function Hero() {
               activities.
             </p>
             <div className="flex flex-col items-center gap-4">
-              <button
-                type="button"
+              <Link
+                href="/Waitlist"
                 className="group inline-flex w-fit items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-24 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FCF9ED]"
               >
                 <EnvelopeIcon className="h-6 w-6 shrink-0" />
                 Join the Waitlist
-              </button>
+              </Link>
               <p className="flex items-center gap-1.5 text-sm font-normal text-neutral-500">
                 No spam, just updates about our Calgary launch
                 <SparkleIcon
@@ -154,7 +153,7 @@ export default function Hero() {
           <div className="relative w-full max-w-2xl">
             <div className="relative aspect-[16/10] -rotate-3 overflow-hidden rounded-3xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
               <Image
-                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop"
+                src="/hero.webp"
                 alt="Group of friends smiling together outdoors"
                 fill
                 className="object-cover grayscale"
