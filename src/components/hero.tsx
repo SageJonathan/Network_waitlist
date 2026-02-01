@@ -130,12 +130,12 @@ export default function Hero() {
               pitches. No awkward mixers. Just real connections through shared
               activities.
             </p>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col items-center gap-4">
               <button
                 type="button"
-                className="group inline-flex w-fit items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#F89B37]/30 transition hover:shadow-xl hover:shadow-[#F89B37]/35 focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FBF9F6]"
+                className="group inline-flex w-fit items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-24 py-4 text-lg font-semibold text-white shadow-lg shadow-[#F89B37]/30 transition hover:shadow-xl hover:shadow-[#F89B37]/35 focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FBF9F6]"
               >
-                <EnvelopeIcon className="h-5 w-5 shrink-0" />
+                <EnvelopeIcon className="h-6 w-6 shrink-0" />
                 Join the Waitlist
               </button>
               <p className="flex items-center gap-1.5 text-sm font-normal text-neutral-500">
