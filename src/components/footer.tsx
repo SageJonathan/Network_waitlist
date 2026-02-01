@@ -7,8 +7,7 @@ export default function Footer() {
     <footer
       className="relative px-6 py-8 md:py-9"
       style={{
-        background:
-          "linear-gradient(to bottom, #FBF9F6 0%, #F8F4F2 50%, #F5EEF5 100%)",
+        background: "#FCF9ED",
       }}
     >
       <div className="mx-auto flex max-w-md flex-col items-center gap-2 text-center">
