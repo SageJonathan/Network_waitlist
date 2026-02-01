@@ -151,8 +151,8 @@ export default function Hero() {
 
         {/* Right column: image + floating card (slightly tilted like mockup) */}
         <div className="relative flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-2xl -rotate-3">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-neutral-200">
+          <div className="relative w-full max-w-2xl">
+            <div className="relative aspect-[16/10] -rotate-3 overflow-hidden rounded-3xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
               <Image
                 src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop"
                 alt="Group of friends smiling together outdoors"
@@ -162,7 +162,7 @@ export default function Hero() {
                 priority
               />
             </div>
-            <div className="absolute -bottom-15 -right-4 flex rotate-10 items-center gap-4 rounded-2xl bg-white p-4 shadow-xl md:-right-6 md:p-5">
+            <div className="absolute -bottom-15 -right-4 flex rotate-3 items-center gap-4 rounded-2xl bg-white p-4 shadow-xl transition-transform duration-200 hover:rotate-0 md:-right-6 md:p-5">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] p-1.5 md:h-14 md:w-14">
                 <PeopleIcon className="h-full w-full text-white" />
               </div>
