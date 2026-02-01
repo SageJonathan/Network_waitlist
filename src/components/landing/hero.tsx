@@ -11,6 +11,7 @@ function Logo() {
         height={28}
         className="h-7 w-auto shrink-0"
         priority
+        unoptimized
       />
     </div>
   );
@@ -159,6 +160,7 @@ export default function Hero() {
                 className="object-cover grayscale"
                 sizes="(max-width: 1024px) 100vw, 672px"
                 priority
+                unoptimized
               />
             </div>
             <div className="absolute -bottom-15 -right-4 flex rotate-3 items-center gap-4 rounded-2xl bg-white p-4 shadow-xl transition-transform duration-200 hover:rotate-0 md:-right-6 md:p-5">

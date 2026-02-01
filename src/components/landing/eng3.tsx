@@ -22,6 +22,7 @@ export default function Eng3() {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
+              unoptimized
             />
           </div>
 
@@ -33,6 +34,7 @@ export default function Eng3() {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
+              unoptimized
             />
           </div>
         </div>

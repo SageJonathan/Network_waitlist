@@ -16,6 +16,7 @@ export default function Footer() {
             width={120}
             height={28}
             className="h-7 w-auto shrink-0 md:h-8"
+            unoptimized
           />
         </div>
         <p className="text-sm text-neutral-700 md:text-base">
