@@ -162,7 +162,7 @@ export default function Hero() {
                 priority
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-xl md:-right-6 md:p-5">
+            <div className="absolute -bottom-15 -right-4 flex rotate-10 items-center gap-4 rounded-2xl bg-white p-4 shadow-xl md:-right-6 md:p-5">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-pink-500 p-1.5 md:h-14 md:w-14">
                 <PeopleIcon className="h-full w-full text-white" />
               </div>
