@@ -51,7 +51,7 @@ export default function CTA() {
         <p className="mt-2 text-center text-base font-normal leading-relaxed text-white/95 md:text-lg">
           Join the waitlist and be the first to know when we launch in Calgary.
         </p>
-        <div className="mt-6 rounded-3xl bg-white/15 px-8 py-8 shadow-xl backdrop-blur-md md:px-12 md:py-10">
+        <div className="mx-auto mt-6 max-w-md rounded-3xl bg-white/15 px-8 py-8 shadow-xl backdrop-blur-md md:px-12 md:py-10">
           <div className="flex w-full flex-col items-center gap-3">
             <button
               type="button"
