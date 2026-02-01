@@ -74,7 +74,7 @@ const features = [
     id: "community",
     title: "Real Community",
     description:
-      "Build genuine friendships with people who share your interests.",
+      "Build genuine connections with people who share your interests.",
     Icon: PeopleIcon,
   },
   {

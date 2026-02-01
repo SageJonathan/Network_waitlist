@@ -116,7 +116,7 @@ export default function Hero() {
           <div className="mt-8 flex flex-col gap-6">
             <div className="inline-flex w-fit -rotate-2 items-center gap-2 rounded-full border border-orange-200 bg-[#FFEEDD] px-4 py-2 text-sm font-normal text-neutral-800">
               <span aria-hidden>🇨🇦</span>
-              <span>Launching in Calgary</span>
+              <span className="text-[#D52B1E]">Launching in Calgary</span>
             </div>
             <h1 className="text-3xl font-bold leading-tight text-neutral-900 md:text-4xl lg:text-5xl">
               Networking that doesn&apos;t feel like{" "}
@@ -153,7 +153,7 @@ export default function Hero() {
           <div className="relative w-full max-w-2xl">
             <div className="relative aspect-[16/10] -rotate-3 overflow-hidden rounded-3xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
               <Image
-                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop"
+                src="/hero.webp"
                 alt="Group of friends smiling together outdoors"
                 fill
                 className="object-cover grayscale"
