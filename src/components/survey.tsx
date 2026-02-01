@@ -3,6 +3,19 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import SuccessModal from "@/components/success-modal";
+
+const NETWORKING_PAIN_OPTIONS = [
+  "Too transactional",
+  "Boring / repetitive",
+  "Hard to follow up",
+  "Awkward small talk",
+  "Feels inauthentic",
+  "Wrong crowd",
+  "Time / location",
+  "Other",
+];
+
 const STRUGGLE_OPTIONS = [
   "Finding mentors",
   "Work-life balance",
@@ -24,8 +37,10 @@ const FEATURE_OPTIONS = [
 ];
 
 export default function Survey() {
+  const [networkingPainSelected, setNetworkingPainSelected] = useState<
+    Set<string>
+  >(new Set());
   const [networkingPain, setNetworkingPain] = useState("");
-  const [careerDevPain, setCareerDevPain] = useState("");
   const [struggleSelected, setStruggleSelected] = useState<Set<string>>(
     new Set()
   );
@@ -35,7 +50,16 @@ export default function Survey() {
   );
   const [featureOther, setFeatureOther] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  function toggleNetworkingPain(option: string) {
+    setNetworkingPainSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(option)) next.delete(option);
+      else next.add(option);
+      return next;
+    });
+  }
 
   function toggleStruggle(option: string) {
     setStruggleSelected((prev) => {
@@ -60,36 +84,14 @@ export default function Survey() {
     setIsSubmitting(true);
     try {
       // Placeholder: call server action to save survey responses
-      // await submitSurveyResponses({ networkingPain, careerDevPain, struggleSelected: [...struggleSelected], struggleOther, featureSelected: [...featureSelected], featureOther });
+      // await submitSurveyResponses({ networkingPainSelected: [...networkingPainSelected], networkingPain, careerDevPain, struggleSelected: [...struggleSelected], struggleOther, featureSelected: [...featureSelected], featureOther });
       await new Promise((r) => setTimeout(r, 600));
-      setSubmitted(true);
+      setShowSuccessModal(true);
     } catch {
       // TODO: show error state
     } finally {
       setIsSubmitting(false);
     }
-  }
-
-  if (submitted) {
-    return (
-      <section className="bg-[#FCF9ED] px-6 py-16 md:py-20">
-        <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-2xl font-bold text-[#1A1A1A] md:text-3xl">
-            Thanks for sharing
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-neutral-600">
-            Your input helps us build something you&apos;ll actually love. We
-            look forward to building it with you.
-          </p>
-          <Link
-            href="/"
-            className="mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-3 font-semibold text-white transition-all hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FCF9ED]"
-          >
-            Back to home
-          </Link>
-        </div>
-      </section>
-    );
   }
 
   return (
@@ -122,31 +124,36 @@ export default function Survey() {
           <label className="mb-2 block text-sm font-bold text-neutral-800">
             What frustrates you about networking events?
           </label>
-          <p className="mb-2 text-xs text-neutral-500">
-            Optional — e.g. too transactional, boring, hard to follow up
+          <p className="mb-3 text-xs text-neutral-500">
+            Optional — select any that apply
           </p>
+          <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {NETWORKING_PAIN_OPTIONS.map((option) => {
+              const isSelected = networkingPainSelected.has(option);
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => toggleNetworkingPain(option)}
+                  className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+                    isSelected
+                      ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
+                      : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
+                  }`}
+                >
+                  {option}
+                </button>
+              );
+            })}
+          </div>
           <textarea
             value={networkingPain}
             onChange={(e) => setNetworkingPain(e.target.value)}
-            placeholder="Tell us what you don't like..."
-            rows={3}
+            placeholder="Anything else? (optional)"
+            rows={2}
             className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
           />
 
-          {/* Career development */}
-          <label className="mb-2 block text-sm font-bold text-neutral-800">
-            What&apos;s missing or frustrating about career development today?
-          </label>
-          <p className="mb-2 text-xs text-neutral-500">
-            Optional — programs, advice, support, etc.
-          </p>
-          <textarea
-            value={careerDevPain}
-            onChange={(e) => setCareerDevPain(e.target.value)}
-            placeholder="What would you change?"
-            rows={3}
-            className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
-          />
 
           {/* Career struggles */}
           <label className="mb-2 block text-sm font-bold text-neutral-800">
@@ -234,6 +241,15 @@ export default function Survey() {
           </div>
         </form>
       </div>
+
+      <SuccessModal
+        open={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        title="Thanks for sharing"
+        message="Your input helps us build something you&apos;ll actually love. 
+        We look forward to building it with you."
+        primaryAction={{ label: "Back to home", href: "/" }}
+      />
     </section>
   );
 }
