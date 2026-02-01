@@ -1,14 +1,16 @@
+import Image from "next/image";
 import Link from "next/link";
 
 function Logo() {
   return (
     <div className="flex items-center gap-2">
-      <img
+      <Image
         src="/Logo.png"
         alt="Humanae"
         width={120}
         height={28}
         className="h-7 w-auto shrink-0"
+        priority
       />
     </div>
   );
@@ -150,10 +152,13 @@ export default function Hero() {
         <div className="relative flex justify-center lg:justify-end">
           <div className="relative w-full max-w-2xl">
             <div className="relative aspect-[16/10] -rotate-3 overflow-hidden rounded-3xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
-              <img
+              <Image
                 src="/hero.webp"
                 alt="Group of friends smiling together outdoors"
-                className="size-full object-cover grayscale"
+                fill
+                className="object-cover grayscale"
+                sizes="(max-width: 1024px) 100vw, 672px"
+                priority
               />
             </div>
             <div className="absolute -bottom-15 -right-4 flex rotate-3 items-center gap-4 rounded-2xl bg-white p-4 shadow-xl transition-transform duration-200 hover:rotate-0 md:-right-6 md:p-5">

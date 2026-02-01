@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Eng3() {
   return (
     <section className="bg-[#FDF9F0] px-6 py-16 md:py-20 lg:py-24">
@@ -14,19 +16,23 @@ export default function Eng3() {
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16 lg:gap-8">
           {/* Left tile: tilted left, horizontal on hover */}
           <div className="relative aspect-[4/3] -rotate-2 overflow-hidden rounded-2xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
-            <img
+            <Image
               src="/rungroup.webp"
               alt="Group of people running together"
-              className="size-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
 
           {/* Right tile: tilted right, horizontal on hover */}
           <div className="relative aspect-[4/3] rotate-2 overflow-hidden rounded-2xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
-            <img
+            <Image
               src="/boardgame.webp"
               alt="Group of friends playing board games"
-              className="size-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </div>
