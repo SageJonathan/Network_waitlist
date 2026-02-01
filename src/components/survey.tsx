@@ -1,0 +1,239 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
+const STRUGGLE_OPTIONS = [
+  "Finding mentors",
+  "Work-life balance",
+  "Switching roles",
+  "Visibility / advancement",
+  "Skill gaps",
+  "Imposter syndrome",
+  "Other",
+];
+
+const FEATURE_OPTIONS = [
+  "Mentorship",
+  "Skill swaps",
+  "Accountability buddies",
+  "Career workshops",
+  "Community events",
+  "Job / role support",
+  "Other",
+];
+
+export default function Survey() {
+  const [networkingPain, setNetworkingPain] = useState("");
+  const [careerDevPain, setCareerDevPain] = useState("");
+  const [struggleSelected, setStruggleSelected] = useState<Set<string>>(
+    new Set()
+  );
+  const [struggleOther, setStruggleOther] = useState("");
+  const [featureSelected, setFeatureSelected] = useState<Set<string>>(
+    new Set()
+  );
+  const [featureOther, setFeatureOther] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  function toggleStruggle(option: string) {
+    setStruggleSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(option)) next.delete(option);
+      else next.add(option);
+      return next;
+    });
+  }
+
+  function toggleFeature(option: string) {
+    setFeatureSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(option)) next.delete(option);
+      else next.add(option);
+      return next;
+    });
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      // Placeholder: call server action to save survey responses
+      // await submitSurveyResponses({ networkingPain, careerDevPain, struggleSelected: [...struggleSelected], struggleOther, featureSelected: [...featureSelected], featureOther });
+      await new Promise((r) => setTimeout(r, 600));
+      setSubmitted(true);
+    } catch {
+      // TODO: show error state
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  if (submitted) {
+    return (
+      <section className="bg-[#FCF9ED] px-6 py-16 md:py-20">
+        <div className="mx-auto max-w-xl text-center">
+          <h2 className="text-2xl font-bold text-[#1A1A1A] md:text-3xl">
+            Thanks for sharing
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-neutral-600">
+            Your input helps us build something you&apos;ll actually love. We
+            look forward to building it with you.
+          </p>
+          <Link
+            href="/"
+            className="mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-3 font-semibold text-white transition-all hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FCF9ED]"
+          >
+            Back to home
+          </Link>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="bg-[#FCF9ED] px-6 pb-16 pt-8 md:pb-20">
+      <div className="mx-auto max-w-xl">
+        <div className="mb-8">
+          <Link
+            href="/Waitlist"
+            className="inline-flex items-center gap-2 text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FCF9ED]"
+          >
+            <span aria-hidden>←</span>
+            Back to waitlist
+          </Link>
+        </div>
+
+        <div className="mb-8 text-center">
+          <h1 className="text-2xl font-bold text-[#1A1A1A] md:text-3xl">
+            Help us build something you&apos;ll love
+          </h1>
+          <p className="mt-2 text-base text-neutral-600">
+            A few questions so we can shape the community around what you need.
+          </p>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="-rotate-2 rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:rotate-0 md:p-8"
+        >
+          {/* Networking events */}
+          <label className="mb-2 block text-sm font-bold text-neutral-800">
+            What frustrates you about networking events?
+          </label>
+          <p className="mb-2 text-xs text-neutral-500">
+            Optional — e.g. too transactional, boring, hard to follow up
+          </p>
+          <textarea
+            value={networkingPain}
+            onChange={(e) => setNetworkingPain(e.target.value)}
+            placeholder="Tell us what you don't like..."
+            rows={3}
+            className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+          />
+
+          {/* Career development */}
+          <label className="mb-2 block text-sm font-bold text-neutral-800">
+            What&apos;s missing or frustrating about career development today?
+          </label>
+          <p className="mb-2 text-xs text-neutral-500">
+            Optional — programs, advice, support, etc.
+          </p>
+          <textarea
+            value={careerDevPain}
+            onChange={(e) => setCareerDevPain(e.target.value)}
+            placeholder="What would you change?"
+            rows={3}
+            className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+          />
+
+          {/* Career struggles */}
+          <label className="mb-2 block text-sm font-bold text-neutral-800">
+            Where do you struggle most in your career?
+          </label>
+          <p className="mb-3 text-xs text-neutral-500">
+            Optional — select any that apply
+          </p>
+          <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {STRUGGLE_OPTIONS.map((option) => {
+              const isSelected = struggleSelected.has(option);
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => toggleStruggle(option)}
+                  className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+                    isSelected
+                      ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
+                      : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
+                  }`}
+                >
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+          <textarea
+            value={struggleOther}
+            onChange={(e) => setStruggleOther(e.target.value)}
+            placeholder="Anything else? (optional)"
+            rows={2}
+            className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+          />
+
+          {/* Services / features */}
+          <label className="mb-2 block text-sm font-bold text-neutral-800">
+            What services or features would you want from a community like ours?
+          </label>
+          <p className="mb-3 text-xs text-neutral-500">
+            Optional — select any that appeal to you
+          </p>
+          <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {FEATURE_OPTIONS.map((option) => {
+              const isSelected = featureSelected.has(option);
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => toggleFeature(option)}
+                  className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+                    isSelected
+                      ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
+                      : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
+                  }`}
+                >
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+          <textarea
+            value={featureOther}
+            onChange={(e) => setFeatureOther(e.target.value)}
+            placeholder="Something else you'd love to see? (optional)"
+            rows={2}
+            className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+          />
+
+          {/* Submit */}
+          <div className="flex flex-col items-center gap-4">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-white disabled:opacity-70 disabled:hover:scale-100"
+            >
+              {isSubmitting ? "Submitting…" : "Submit survey"}
+            </button>
+            <Link
+              href="/"
+              className="text-sm font-medium text-neutral-600 underline underline-offset-2 hover:text-neutral-800"
+            >
+              Skip and go home
+            </Link>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+}

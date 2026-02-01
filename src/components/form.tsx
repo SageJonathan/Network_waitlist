@@ -248,13 +248,13 @@ export default function Form() {
                 >
                   Back to home
                 </Link>
-                <a
-                  href="#survey"
+                <Link
+                  href="/survey"
                   className="inline-flex w-full items-center justify-center rounded-full border-2 border-neutral-300 bg-white px-6 py-3 font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2"
                   onClick={() => setShowSuccessModal(false)}
                 >
-                  Tell us what you want to see 
-                </a>
+                What should we build first?
+                </Link>
               </div>
             </div>
           </div>
