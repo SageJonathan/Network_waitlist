@@ -17,7 +17,7 @@ export default function Eng3() {
           {/* Left tile: tilted left, horizontal on hover */}
           <div className="relative aspect-[4/3] -rotate-2 overflow-hidden rounded-2xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
             <Image
-              src="/eng3_img1.png"
+              src="/eng3_img1.webp"
               alt="Group of people from aerial view"
               fill
               className="object-cover"
@@ -28,7 +28,7 @@ export default function Eng3() {
           {/* Right tile: tilted right, horizontal on hover */}
           <div className="relative aspect-[4/3] rotate-2 overflow-hidden rounded-2xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
             <Image
-              src="/eng3_img2.png"
+              src="/eng3_img2.webp"
               alt="Group of friends outdoors"
               fill
               className="object-cover"
