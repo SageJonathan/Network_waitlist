@@ -33,7 +33,9 @@ export const metadata: Metadata = {
       "Meet amazing people doing things you actually love. Join the waitlist for our Calgary launch.",
   },
   icons: {
-    icon: "/Favicon.png",
+    icon: [{ url: "/Favicon.png", type: "image/png" }],
+    shortcut: "/Favicon.png",
+    apple: "/Favicon.png",
   },
   robots: {
     index: true,
