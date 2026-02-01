@@ -14,21 +14,21 @@ export default function Eng3() {
         </header>
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16 lg:gap-8">
-          {/* Left tile: beach / group fitness */}
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-200">
+          {/* Left tile: tilted left, horizontal on hover */}
+          <div className="relative aspect-[4/3] -rotate-2 overflow-hidden rounded-2xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
             <Image
-              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800&auto=format&fit=crop"
-              alt="Group fitness activity on the beach"
+              src="/eng3_img1.png"
+              alt="Group of people from aerial view"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
 
-          {/* Right tile: group portrait outdoors */}
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-200">
+          {/* Right tile: tilted right, horizontal on hover */}
+          <div className="relative aspect-[4/3] rotate-2 overflow-hidden rounded-2xl bg-neutral-200 transition-transform duration-200 hover:rotate-0">
             <Image
-              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop"
+              src="/eng3_img2.png"
               alt="Group of friends outdoors"
               fill
               className="object-cover"
