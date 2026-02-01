@@ -111,12 +111,12 @@ export default function Eng2() {
               className="flex flex-col items-center text-center"
             >
               <div
-                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-[#EC4899]"
+                className="flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center rounded-2xl text-[#EC4899] md:h-20 md:w-20"
                 style={{
-                  background: "linear-gradient(135deg, #FDF9F0 0%, #FCE7F3 100%)",
+                  background: "linear-gradient(135deg, #FFE8D6 0%, #FAD4E0 100%)",
                 }}
               >
-                <Icon className="h-8 w-8" />
+                <Icon className="h-9 w-9 md:h-10 md:w-10" />
               </div>
               <h3 className="mt-4 text-lg font-bold text-[#1A1A1A]">
                 {title}
