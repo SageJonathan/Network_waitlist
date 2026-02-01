@@ -48,7 +48,7 @@ function PeopleIcon({ className }: { className?: string }) {
 
 export default function Hero() {
   return (
-    <section className="min-h-[90vh] bg-[#fdf8f3] px-6 py-12 md:px-12 md:py-16 lg:px-16 lg:py-20">
+    <section className="min-h-[90vh] bg-[#FFFCEF] px-6 py-12 md:px-12 md:py-16 lg:px-16 lg:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
         {/* Left column: content */}
         <div className="flex flex-col">
@@ -71,7 +71,7 @@ export default function Hero() {
             <div className="flex flex-col gap-2">
               <button
                 type="button"
-                className="group inline-flex w-fit items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-orange-500/25 transition hover:shadow-xl hover:shadow-orange-500/30 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-[#fdf8f3]"
+                className="group inline-flex w-fit items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-orange-500/25 transition hover:shadow-xl hover:shadow-orange-500/30 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-[#FFFCEF]"
               >
                 <EnvelopeIcon className="shrink-0" />
                 Join the Waitlist
