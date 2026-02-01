@@ -1,3 +1,4 @@
+import CTA from "@/components/cta";
 import Eng1 from "@/components/eng1";
 import Eng2 from "@/components/eng2";
 import Eng3 from "@/components/eng3";
@@ -12,6 +13,7 @@ export default function Home() {
       <Eng2 />
       <Eng3 />
       <Eng4 />
+      <CTA />
     </div>
   );
 }
