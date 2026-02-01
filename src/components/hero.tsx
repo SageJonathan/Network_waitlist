@@ -109,19 +109,19 @@ function PeopleIcon({ className }: { className?: string }) {
 
 export default function Hero() {
   return (
-    <section className="min-h-[90vh] bg-[#FFFCEF] px-6 py-12 md:px-12 md:py-16 lg:px-16 lg:py-20">
+    <section className="min-h-[90vh] bg-[#FBF9F6] px-6 py-12 md:px-12 md:py-16 lg:px-16 lg:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
         {/* Left column: content */}
         <div className="flex flex-col">
           <Logo />
           <div className="mt-8 flex flex-col gap-6">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-orange-200 bg-[#fde8dc] px-4 py-2 text-sm font-normal text-neutral-800">
+            <div className="inline-flex w-fit -rotate-2 items-center gap-2 rounded-full border border-orange-200 bg-[#FFEEDD] px-4 py-2 text-sm font-normal text-neutral-800">
               <span aria-hidden>🇨🇦</span>
               <span>Launching in Calgary</span>
             </div>
             <h1 className="text-3xl font-bold leading-tight text-neutral-900 md:text-4xl lg:text-5xl">
               Networking that doesn&apos;t feel like{" "}
-              <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#F89B37] to-[#F4529B] bg-clip-text text-transparent">
                 work
               </span>
             </h1>
@@ -133,7 +133,7 @@ export default function Hero() {
             <div className="flex flex-col gap-2">
               <button
                 type="button"
-                className="group inline-flex w-fit items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition hover:shadow-xl hover:shadow-orange-500/30 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-[#FFFCEF]"
+                className="group inline-flex w-fit items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#F89B37]/30 transition hover:shadow-xl hover:shadow-[#F89B37]/35 focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FBF9F6]"
               >
                 <EnvelopeIcon className="h-5 w-5 shrink-0" />
                 Join the Waitlist
@@ -163,7 +163,7 @@ export default function Hero() {
               />
             </div>
             <div className="absolute -bottom-15 -right-4 flex rotate-10 items-center gap-4 rounded-2xl bg-white p-4 shadow-xl md:-right-6 md:p-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-pink-500 p-1.5 md:h-14 md:w-14">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] p-1.5 md:h-14 md:w-14">
                 <PeopleIcon className="h-full w-full text-white" />
               </div>
               <div>
