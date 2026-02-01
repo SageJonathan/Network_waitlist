@@ -133,7 +133,7 @@ export default function Hero() {
             <div className="flex flex-col items-center gap-4">
               <button
                 type="button"
-                className="group inline-flex w-fit items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-24 py-4 text-lg font-semibold text-white shadow-lg shadow-[#F89B37]/30 transition hover:shadow-xl hover:shadow-[#F89B37]/35 focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FBF9F6]"
+                className="group inline-flex w-fit items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-24 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FBF9F6]"
               >
                 <EnvelopeIcon className="h-6 w-6 shrink-0" />
                 Join the Waitlist
