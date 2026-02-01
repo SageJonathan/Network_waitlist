@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Footer() {
   return (
     <footer
@@ -10,13 +8,12 @@ export default function Footer() {
     >
       <div className="mx-auto flex max-w-md flex-col items-center gap-2 text-center">
         <div className="flex items-center justify-center">
-          <Image
+          <img
             src="/Logo.png"
             alt="Humanae"
             width={120}
             height={28}
             className="h-7 w-auto shrink-0 md:h-8"
-            unoptimized
           />
         </div>
         <p className="text-sm text-neutral-700 md:text-base">
