@@ -20,7 +20,7 @@ function EnvelopeIcon({ className }: { className?: string }) {
 
 export default function CTA() {
   return (
-    <section className="relative overflow-hidden px-6 py-16 md:py-20 lg:py-24">
+    <section className="relative overflow-hidden px-6 py-10 md:py-12 lg:py-14">
       {/* Gradient background */}
       <div
         className="absolute inset-0"
@@ -48,10 +48,10 @@ export default function CTA() {
         <h2 className="text-center text-2xl font-bold text-white md:text-3xl lg:text-4xl">
           Ready to meet your people?
         </h2>
-        <p className="mt-4 text-center text-base font-normal leading-relaxed text-white/95 md:text-lg">
+        <p className="mt-2 text-center text-base font-normal leading-relaxed text-white/95 md:text-lg">
           Join the waitlist and be the first to know when we launch in Calgary.
         </p>
-        <div className="mt-8 rounded-3xl bg-white/15 px-8 py-12 shadow-xl backdrop-blur-md md:px-12 md:py-16">
+        <div className="mt-6 rounded-3xl bg-white/15 px-8 py-8 shadow-xl backdrop-blur-md md:px-12 md:py-10">
           <div className="flex w-full flex-col items-center gap-3">
             <button
               type="button"
