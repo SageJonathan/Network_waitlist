@@ -5,16 +5,16 @@ import type { WaitlistFormData } from "@/types/forms";
 import { supabaseAdmin } from "@/lib/supabase-server";
 
 export type SubmitWaitlistResult =
-  | { success: true; id: string }
+  | { success: true }
   | { success: false; error: string };
 
 function toWaitlistRow(data: WaitlistFormData): Omit<WaitlistInsert, "id"> {
   return {
     name: data.name,
     email: data.email,
-    activities: data.activities,
-    availability: data.availability,
-    how_did_you_hear: data.howDidYouHear || undefined,
+    ...(data.activities?.length ? { activities: data.activities } : {}),
+    ...(data.availability ? { availability: data.availability } : {}),
+    ...(data.howDidYouHear ? { how_did_you_hear: data.howDidYouHear } : {}),
   };
 }
 
@@ -23,23 +23,16 @@ export async function submitWaitlistEntry(
 ): Promise<SubmitWaitlistResult> {
   try {
     const row = toWaitlistRow(data);
-    const { data: inserted, error } = await supabaseAdmin
+    const { error } = await supabaseAdmin
       .from("prelaunch_waitlist")
-      .insert(row)
-      .select("id")
-      .single();
+      .insert(row);
 
     if (error) {
       console.error("[submitWaitlistEntry]", error);
       return { success: false, error: error.message };
     }
 
-    const id = inserted?.id;
-    if (id == null) {
-      return { success: false, error: "No id returned from insert" };
-    }
-
-    return { success: true, id: String(id) };
+    return { success: true };
   } catch (err) {
     console.error("[submitWaitlistEntry]", err);
     return {

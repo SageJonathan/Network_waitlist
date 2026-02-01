@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { submitSurveyResponses } from "@/actions";
@@ -40,9 +39,6 @@ const FEATURE_OPTIONS = [
 ];
 
 export default function Survey() {
-  const searchParams = useSearchParams();
-  const waitlistId = searchParams.get("waitlist_id") ?? undefined;
-
   const [networkingPainSelected, setNetworkingPainSelected] = useState<
     Set<string>
   >(new Set());
@@ -105,10 +101,7 @@ export default function Survey() {
     const sanitized = sanitizeSurveyPayload(payload);
     setIsSubmitting(true);
     try {
-      const result = await submitSurveyResponses({
-        ...sanitized,
-        waitlist_id: waitlistId,
-      });
+      const result = await submitSurveyResponses(sanitized);
       if (!result.success) throw new Error(result.error);
       setShowSuccessModal(true);
     } catch {

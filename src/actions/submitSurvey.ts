@@ -8,26 +8,33 @@ export type SubmitSurveyResult =
   | { success: true }
   | { success: false; error: string };
 
-type SubmitSurveyPayload = SurveyFormData & { waitlist_id?: string };
-
-function toSurveyRow(payload: SubmitSurveyPayload): SurveyInsert {
+function toSurveyRow(data: SurveyFormData): SurveyInsert {
   return {
-    ...(payload.waitlist_id != null && { waitlist_id: payload.waitlist_id }),
-    networking_pain_selected: payload.networkingPainSelected ?? [],
-    networking_pain: payload.networkingPain ?? null,
-    career_dev_pain: payload.careerDevPain ?? null,
-    struggle_selected: payload.struggleSelected ?? [],
-    struggle_other: payload.struggleOther ?? null,
-    feature_selected: payload.featureSelected ?? [],
-    feature_other: payload.featureOther ?? null,
+    ...(data.networkingPainSelected?.length
+      ? { networking_pain_selected: data.networkingPainSelected }
+      : {}),
+    ...(data.networkingPain != null
+      ? { networking_pain: data.networkingPain }
+      : {}),
+    ...(data.careerDevPain != null
+      ? { career_dev_pain: data.careerDevPain }
+      : {}),
+    ...(data.struggleSelected?.length
+      ? { struggle_selected: data.struggleSelected }
+      : {}),
+    ...(data.struggleOther != null ? { struggle_other: data.struggleOther } : {}),
+    ...(data.featureSelected?.length
+      ? { feature_selected: data.featureSelected }
+      : {}),
+    ...(data.featureOther != null ? { feature_other: data.featureOther } : {}),
   };
 }
 
 export async function submitSurveyResponses(
-  payload: SubmitSurveyPayload
+  data: SurveyFormData
 ): Promise<SubmitSurveyResult> {
   try {
-    const row = toSurveyRow(payload);
+    const row = toSurveyRow(data);
     const { error } = await supabaseAdmin.from("prelaunch_survey").insert(row);
 
     if (error) {

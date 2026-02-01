@@ -77,7 +77,6 @@ export default function Form() {
   const [availability, setAvailability] = useState("");
   const [howDidYouHear, setHowDidYouHear] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [waitlistId, setWaitlistId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -110,7 +109,6 @@ export default function Form() {
     try {
       const result = await submitWaitlistEntry(sanitized);
       if (!result.success) throw new Error(result.error);
-      setWaitlistId(result.id);
       setShowSuccessModal(true);
     } catch {
       setErrors({ form: "Something went wrong. Please try again." });
@@ -264,9 +262,7 @@ export default function Form() {
         primaryAction={{ label: "Back to home", href: "/" }}
         secondaryAction={{
           label: "What should we build first?",
-          href: waitlistId
-            ? `/survey?waitlist_id=${encodeURIComponent(waitlistId)}`
-            : "/survey",
+          href: "/survey",
           onClose: () => setShowSuccessModal(false),
         }}
       />

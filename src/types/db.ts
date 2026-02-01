@@ -4,17 +4,16 @@ export type WaitlistInsert = {
   name: string;
   email: string;
   activities?: string[];
-  availability: string;
+  availability?: string;
   how_did_you_hear?: string;
 };
 
 export type SurveyInsert = {
-  waitlist_id?: string;
   networking_pain_selected?: string[];
   networking_pain?: string | null;
-  career_dev_pain: string | null;
+  career_dev_pain?: string | null;
   struggle_selected?: string[];
-  struggle_other: string | null;
+  struggle_other?: string | null;
   feature_selected?: string[];
   feature_other?: string | null;
 };
