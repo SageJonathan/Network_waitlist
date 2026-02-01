@@ -108,7 +108,7 @@ export default function Eng2() {
           {features.map(({ id, title, description, Icon }) => (
             <div
               key={id}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col items-center text-center transition-transform duration-200 hover:scale-105"
             >
               <div
                 className="flex h-[4.5rem] w-[4.5rem] shrink-0 rotate-2 items-center justify-center rounded-2xl text-[#EC4899] md:h-20 md:w-20"
