@@ -1,31 +1,18 @@
 import Image from "next/image";
 
+import logoImg from "../../Mockups/Logo.png";
+
 function Logo() {
   return (
     <div className="flex items-center gap-2">
-      <svg
-        width="40"
-        height="24"
-        viewBox="0 0 40 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden
-      >
-        {/* Two interconnected loops (infinity-style) */}
-        <circle cx="14" cy="12" r="6" fill="url(#logo-grad)" />
-        <circle cx="26" cy="12" r="6" fill="url(#logo-grad2)" />
-        <defs>
-          <linearGradient id="logo-grad" x1="8" y1="6" x2="20" y2="18" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#f97316" />
-            <stop offset="1" stopColor="#ec4899" />
-          </linearGradient>
-          <linearGradient id="logo-grad2" x1="20" y1="6" x2="32" y2="18" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#f97316" />
-            <stop offset="1" stopColor="#ec4899" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <span className="text-xl font-semibold text-neutral-800">Humanae</span>
+      <Image
+        src={logoImg}
+        alt="Humanae"
+        width={logoImg.width}
+        height={logoImg.height}
+        className="h-6 w-auto shrink-0"
+        priority
+      />
     </div>
   );
 }
