@@ -111,7 +111,7 @@ export default function Eng2() {
               className="flex flex-col items-center text-center"
             >
               <div
-                className="flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center rounded-2xl text-[#EC4899] md:h-20 md:w-20"
+                className="flex h-[4.5rem] w-[4.5rem] shrink-0 rotate-2 items-center justify-center rounded-2xl text-[#EC4899] md:h-20 md:w-20"
                 style={{
                   background: "linear-gradient(135deg, #FFE8D6 0%, #FAD4E0 100%)",
                 }}
