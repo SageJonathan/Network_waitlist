@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 function EnvelopeIcon({ className }: { className?: string }) {
@@ -69,6 +70,8 @@ export default function Form() {
   );
   const [availability, setAvailability] = useState("");
   const [howDidYouHear, setHowDidYouHear] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function toggleActivity(activity: string) {
     setSelectedActivities((prev) => {
@@ -79,9 +82,20 @@ export default function Form() {
     });
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // TODO: submit to backend
+    setIsSubmitting(true);
+    try {
+      // Placeholder: call server action to save waitlist entry
+      // const result = await submitWaitlistEntry({ name, email, activities: [...selectedActivities], availability, howDidYouHear });
+      // if (!result.success) throw new Error(result.error);
+      await new Promise((r) => setTimeout(r, 600));
+      setShowSuccessModal(true);
+    } catch {
+      // TODO: show error state to user
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -183,9 +197,10 @@ export default function Form() {
           <div className="flex flex-col items-center gap-3">
             <button
               type="submit"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-white"
+              disabled={isSubmitting}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-white disabled:opacity-70 disabled:hover:scale-100"
             >
-              Join the Waitlist
+              {isSubmitting ? "Joining…" : "Join the Waitlist"}
             </button>
             <p className="text-center text-sm text-neutral-500">
               No spam ever. We&apos;ll only reach out when we&apos;re ready to
@@ -194,6 +209,57 @@ export default function Form() {
           </div>
         </form>
       </div>
+
+      {/* Success modal */}
+      {showSuccessModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="success-modal-title"
+        >
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={() => setShowSuccessModal(false)}
+            aria-hidden
+          />
+          <div className="relative w-full max-w-md rounded-3xl border border-neutral-200 bg-white p-8 shadow-xl">
+            <div className="flex flex-col items-center gap-6 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FFEEDD]">
+                <span className="text-2xl" aria-hidden>
+                  ✓
+                </span>
+              </div>
+              <div>
+                <h2
+                  id="success-modal-title"
+                  className="text-xl font-bold text-[#1A1A1A] md:text-2xl"
+                >
+                  You&apos;re on the list!
+                </h2>
+                <p className="mt-2 text-base leading-relaxed text-neutral-600">
+                  We look forward to meeting you.
+                </p>
+              </div>
+              <div className="flex w-full flex-col gap-3">
+                <Link
+                  href="/"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-6 py-3 font-semibold text-white transition-all hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2"
+                >
+                  Back to home
+                </Link>
+                <a
+                  href="#survey"
+                  className="inline-flex w-full items-center justify-center rounded-full border-2 border-neutral-300 bg-white px-6 py-3 font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2"
+                  onClick={() => setShowSuccessModal(false)}
+                >
+                  Tell us what you want to see 
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
