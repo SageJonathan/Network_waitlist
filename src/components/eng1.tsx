@@ -142,7 +142,7 @@ export default function Eng1() {
           {activities.map(({ id, label, iconBg, iconGradientFrom, iconGradientTo, Icon }) => (
             <div
               key={id}
-              className="flex flex-col items-center rounded-2xl bg-[#FAFAF9] px-6 py-8 transition-all duration-200 hover:bg-white hover:shadow-[0_0_0_2px_rgba(255,239,219,0.8),0_2px_12px_rgba(0,0,0,0.06)]"
+              className="flex flex-col items-center rounded-2xl bg-[#FAFAF9] px-6 py-8 transition-all duration-200 hover:-rotate-2 hover:bg-white hover:shadow-[0_0_0_2px_rgba(255,239,219,0.8),0_2px_12px_rgba(0,0,0,0.06)]"
               onMouseEnter={() => setHoveredId(id)}
               onMouseLeave={() => setHoveredId(null)}
             >
