@@ -52,10 +52,10 @@ export default function CTA() {
           Join the waitlist and be the first to know when we launch in Calgary.
         </p>
         <div className="mt-8 rounded-3xl bg-white/15 px-8 py-12 shadow-xl backdrop-blur-md md:px-12 md:py-16">
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex w-full flex-col items-center gap-3">
             <button
               type="button"
-              className="inline-flex w-fit items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              className="inline-flex w-3/4 items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
             >
               <EnvelopeIcon className="h-5 w-5 shrink-0" />
               Join the Waitlist
