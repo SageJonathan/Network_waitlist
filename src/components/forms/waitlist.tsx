@@ -122,7 +122,7 @@ export default function Form() {
       <div className="mx-auto max-w-xl">
         <form
           onSubmit={handleSubmit}
-          className="rotate-2 rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:rotate-0 md:p-8"
+          className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:p-8"
         >
           {errors.form && (
             <p className="mb-4 text-sm font-medium text-red-600" role="alert">
