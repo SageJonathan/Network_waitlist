@@ -167,10 +167,10 @@ export default function Hero() {
               </div>
               <div>
                 <p className="text-sm font-medium text-neutral-600">
-                  Real connections
+                  Your people, your pace
                 </p>
                 <p className="text-sm font-semibold text-neutral-900">
-                  No small talk required
+                  Built around shared activities
                 </p>
               </div>
             </div>

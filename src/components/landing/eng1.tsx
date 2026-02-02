@@ -1,9 +1,9 @@
 "use client";
 
-// Tech-sector fit: mix of physical, mental, indoor, outdoor — each with emoji + bright square per mockup
+// Tech-sector fit: mix of physical, mental, indoor, outdoor — no duplicate-sounding names
 const ACTIVITIES = [
-  { label: "Trail Running", emoji: "🏃", bg: "#22C55E" },
-  { label: "Bouldering", emoji: "🧗", bg: "#8B5CF6" },
+  { label: "Running Club", emoji: "🏃", bg: "#22C55E" },
+  { label: "Climbing", emoji: "🧗", bg: "#8B5CF6" },
   { label: "Board Games", emoji: "🎲", bg: "#F97316" },
   { label: "Coffee & Code", emoji: "☕", bg: "#EA580C" },
   { label: "Hiking", emoji: "🥾", bg: "#0D9488" },
@@ -15,22 +15,16 @@ const ACTIVITIES = [
   { label: "Escape Rooms", emoji: "🔐", bg: "#DC2626" },
   { label: "Patio Drinks", emoji: "🍻", bg: "#F59E0B" },
   { label: "Chess", emoji: "♟️", bg: "#475569" },
-  { label: "Running Club", emoji: "🏃‍♂️", bg: "#10B981" },
-  { label: "Tech Book Club", emoji: "📖", bg: "#3B82F6" },
   { label: "Pickup Basketball", emoji: "🏀", bg: "#EF4444" },
   { label: "Live Music", emoji: "🎵", bg: "#EC4899" },
   { label: "Camping", emoji: "⛺", bg: "#059669" },
   { label: "Comedy", emoji: "🎤", bg: "#F43F5E" },
-  { label: "Climbing Gym", emoji: "🧗‍♂️", bg: "#6366F1" },
-  { label: "Coffee Walks", emoji: "☕", bg: "#D97706" },
   { label: "Disc Golf", emoji: "🥏", bg: "#14B8A6" },
-  { label: "D&D & Tabletop", emoji: "🐉", bg: "#9333EA" },
   { label: "Coworking", emoji: "💻", bg: "#64748B" },
   { label: "Skiing", emoji: "⛷️", bg: "#0EA5E9" },
-  { label: "Podcast Club", emoji: "🎧", bg: "#A855F7" },
+  { label: "Podcast Club", emoji: "🎧", bg: "#6366F1" },
   { label: "Cooking", emoji: "👨‍🍳", bg: "#FBBF24" },
   { label: "Stargazing", emoji: "🔭", bg: "#1E293B" },
-  { label: "Startup Coffee", emoji: "🚀", bg: "#F97316" },
   { label: "Ultimate Frisbee", emoji: "🥏", bg: "#06B6D4" },
 ];
 
