@@ -132,7 +132,7 @@ export default function Hero() {
             <div className="flex flex-col items-center gap-4">
               <Link
                 href="/Waitlist"
-                className="group inline-flex w-fit items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-24 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FCF9ED]"
+                className="group inline-flex w-fit shrink-0 items-center justify-center gap-3 whitespace-nowrap rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-6 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FCF9ED] md:px-24"
               >
                 <EnvelopeIcon className="h-6 w-6 shrink-0" />
                 Join the Waitlist
@@ -167,10 +167,10 @@ export default function Hero() {
               </div>
               <div>
                 <p className="text-sm font-medium text-neutral-600">
-                  Real connections
+                  Your people, your pace
                 </p>
                 <p className="text-sm font-semibold text-neutral-900">
-                  No small talk required
+                  Built around shared activities
                 </p>
               </div>
             </div>

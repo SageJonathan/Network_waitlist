@@ -1,9 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { submitWaitlistEntry } from "@/actions";
-import SuccessModal from "@/components/modals/success-modal";
 import {
   sanitizeWaitlistPayload,
   validateWaitlistForm,
@@ -76,8 +76,8 @@ export default function Form() {
   );
   const [availability, setAvailability] = useState("");
   const [howDidYouHear, setHowDidYouHear] = useState("");
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   function toggleActivity(activity: string) {
@@ -109,7 +109,7 @@ export default function Form() {
     try {
       const result = await submitWaitlistEntry(sanitized);
       if (!result.success) throw new Error(result.error);
-      setShowSuccessModal(true);
+      router.push("/survey");
     } catch {
       setErrors({ form: "Something went wrong. Please try again." });
     } finally {
@@ -122,7 +122,7 @@ export default function Form() {
       <div className="mx-auto max-w-xl">
         <form
           onSubmit={handleSubmit}
-          className="rotate-2 rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:rotate-0 md:p-8"
+          className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] md:p-8"
         >
           {errors.form && (
             <p className="mb-4 text-sm font-medium text-red-600" role="alert">
@@ -242,7 +242,7 @@ export default function Form() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-white disabled:opacity-70 disabled:hover:scale-100"
+              className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-white disabled:opacity-70 disabled:hover:scale-100"
             >
               {isSubmitting ? "Joining…" : "Join the Waitlist"}
             </button>
@@ -253,19 +253,6 @@ export default function Form() {
           </div>
         </form>
       </div>
-
-      <SuccessModal
-        open={showSuccessModal}
-        onClose={() => setShowSuccessModal(false)}
-        title="You're on the list!"
-        message="We look forward to building it with you."
-        primaryAction={{ label: "Back to home", href: "/" }}
-        secondaryAction={{
-          label: "What should we build first?",
-          href: "/survey",
-          onClose: () => setShowSuccessModal(false),
-        }}
-      />
     </section>
   );
 }
