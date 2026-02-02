@@ -137,7 +137,7 @@ export default function Hero() {
                 <EnvelopeIcon className="h-6 w-6 shrink-0" />
                 Join the Waitlist
               </Link>
-              <p className="flex items-center gap-1.5 text-sm font-normal text-neutral-500">
+              <p className="hidden items-center gap-1.5 text-sm font-normal text-neutral-500 md:flex">
                 No spam, just updates about our Calgary launch
                 <SparkleIcon
                   className="h-3.5 w-3.5 shrink-0 text-amber-400"
