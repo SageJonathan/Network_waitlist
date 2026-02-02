@@ -1,9 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { submitWaitlistEntry } from "@/actions";
-import SuccessModal from "@/components/modals/success-modal";
 import {
   sanitizeWaitlistPayload,
   validateWaitlistForm,
@@ -76,8 +76,8 @@ export default function Form() {
   );
   const [availability, setAvailability] = useState("");
   const [howDidYouHear, setHowDidYouHear] = useState("");
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   function toggleActivity(activity: string) {
@@ -109,7 +109,7 @@ export default function Form() {
     try {
       const result = await submitWaitlistEntry(sanitized);
       if (!result.success) throw new Error(result.error);
-      setShowSuccessModal(true);
+      router.push("/survey");
     } catch {
       setErrors({ form: "Something went wrong. Please try again." });
     } finally {
@@ -253,19 +253,6 @@ export default function Form() {
           </div>
         </form>
       </div>
-
-      <SuccessModal
-        open={showSuccessModal}
-        onClose={() => setShowSuccessModal(false)}
-        title="You're on the list!"
-        message="We look forward to building it with you."
-        primaryAction={{ label: "Back to home", href: "/" }}
-        secondaryAction={{
-          label: "What should we build first?",
-          href: "/survey",
-          onClose: () => setShowSuccessModal(false),
-        }}
-      />
     </section>
   );
 }
