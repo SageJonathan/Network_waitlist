@@ -57,7 +57,7 @@ export default function CTA() {
           <div className="flex w-full flex-col items-center gap-3">
             <Link
               href="/Waitlist"
-              className="inline-flex w-3/4 items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-8 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+              className="inline-flex w-3/4 shrink-0 items-center justify-center gap-3 whitespace-nowrap rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-6 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent md:px-8"
             >
               <EnvelopeIcon className="h-5 w-5 shrink-0" />
               Join the Waitlist
