@@ -246,7 +246,7 @@ export default function Form() {
             >
               {isSubmitting ? "Joining…" : "Join the Waitlist"}
             </button>
-            <p className="text-center text-sm text-neutral-500">
+            <p className="hidden text-center text-sm text-neutral-500 md:block">
               No spam ever. We&apos;ll only reach out when we&apos;re ready to
               launch in Calgary ✨
             </p>

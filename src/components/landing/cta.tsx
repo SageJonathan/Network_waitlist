@@ -62,7 +62,7 @@ export default function CTA() {
               <EnvelopeIcon className="h-5 w-5 shrink-0" />
               Join the Waitlist
             </Link>
-            <p className="text-center text-sm font-normal text-white/80">
+            <p className="hidden text-center text-sm font-normal text-white/80 md:block">
               No spam, just updates about our Calgary launch ✨
             </p>
           </div>
