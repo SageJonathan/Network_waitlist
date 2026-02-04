@@ -119,7 +119,7 @@ export default function Hero() {
               <span className="text-[#D52B1E]">Launching in Calgary</span>
             </div>
             <h1 className="text-3xl font-bold leading-tight text-neutral-900 md:text-4xl lg:text-5xl">
-              Networking that doesn&apos;t feel like{" "}
+              Networking <br></br>without the {" "}
               <span className="bg-gradient-to-r from-[#F89B37] to-[#F4529B] bg-clip-text text-transparent">
                 work
               </span>
