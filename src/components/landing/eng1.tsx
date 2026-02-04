@@ -36,8 +36,7 @@ export default function Eng1() {
       <div className="mx-auto max-w-6xl">
         <header className="mx-auto max-w-2xl text-center">
           <h2 className="text-[2rem] font-bold leading-tight text-neutral-900 md:text-[2.25rem] lg:text-[2.75rem]">
-            What&apos;s your{" "}
-            <span className="text-[#F56565]">thing?</span>
+            What&apos;s your <span className="text-[#F56565]">thing?</span>
           </h2>
           <p className="mt-4 text-base font-normal leading-relaxed text-neutral-700 md:text-[1.0625rem]">
             From sunrise hikes to late-night board games — we&apos;ve got you
