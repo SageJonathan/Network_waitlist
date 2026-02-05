@@ -108,23 +108,23 @@ function PeopleIcon({ className }: { className?: string }) {
 
 export default function Hero() {
   return (
-    <section className="min-h-[90vh] bg-[#FCF9ED] px-6 py-12 md:px-12 md:py-16 lg:px-16 lg:py-20">
+    <section className="min-h-[90vh] bg-[#FCF9ED] px-6 pt-12 pb-12 md:px-12 md:pt-16 md:pb-16 lg:px-16 lg:pt-20 lg:pb-10">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
         {/* Left column: content */}
-        <div className="flex flex-col">
+        <div className="flex flex-col md:items-center md:text-center lg:items-start lg:text-left">
           <Logo />
-          <div className="mt-8 flex flex-col gap-6">
-            <div className="inline-flex w-fit -rotate-2 items-center gap-2 rounded-full border border-orange-200 bg-[#FFEEDD] px-4 py-2 text-sm font-normal text-neutral-800">
+          <div className="mt-8 flex flex-col gap-6 md:items-center lg:items-stretch">
+            <div className="inline-flex w-fit -rotate-2 items-center gap-2 rounded-full border border-orange-200 bg-[#FFEEDD] px-4 py-2 text-sm font-normal text-neutral-800 lg:text-base lg:px-5 lg:py-2.5">
               <span aria-hidden>🇨🇦</span>
               <span className="text-[#D52B1E]">Launching in Calgary</span>
             </div>
-            <h1 className="text-3xl font-bold leading-tight text-neutral-900 md:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold leading-tight text-neutral-900 md:text-4xl lg:text-6xl">
               Networking <br></br>without the {" "}
               <span className="bg-gradient-to-r from-[#F89B37] to-[#F4529B] bg-clip-text text-transparent">
                 work
               </span>
             </h1>
-            <p className="max-w-lg text-base font-normal leading-relaxed text-neutral-700">
+            <p className="max-w-lg text-base font-normal leading-relaxed text-neutral-700 md:mx-auto lg:max-w-xl lg:text-lg lg:leading-relaxed">
               Meet amazing people doing things you actually love. No elevator
               pitches. No awkward mixers. Just real connections through shared
               activities.
@@ -132,12 +132,12 @@ export default function Hero() {
             <div className="flex flex-col items-center gap-4">
               <Link
                 href="/Waitlist"
-                className="group inline-flex w-fit shrink-0 items-center justify-center gap-3 whitespace-nowrap rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-6 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FCF9ED] md:px-24"
+                className="group inline-flex w-fit shrink-0 items-center justify-center gap-3 whitespace-nowrap rounded-full bg-gradient-to-r from-[#F89B37] to-[#F4529B] px-6 py-4 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:from-[#F89B37] hover:to-[#dc2626] focus:outline-none focus:ring-2 focus:ring-[#F89B37] focus:ring-offset-2 focus:ring-offset-[#FCF9ED] md:px-24 lg:text-xl lg:px-8 lg:py-4"
               >
                 <EnvelopeIcon className="h-6 w-6 shrink-0" />
                 Join the Waitlist
               </Link>
-              <p className="hidden items-center gap-1.5 text-sm font-normal text-neutral-500 md:flex">
+              <p className="hidden items-center justify-center gap-1.5 text-sm font-normal text-neutral-500 md:flex lg:text-base">
                 No spam, just updates about our Calgary launch
                 <SparkleIcon
                   className="h-3.5 w-3.5 shrink-0 text-amber-400"
