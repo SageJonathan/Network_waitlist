@@ -1,9 +1,9 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { submitWaitlistEntry } from "@/actions";
+import { sendWaitlistEmail, submitWaitlistEntry } from "@/actions";
+import SuccessModal from "@/components/modals/success-modal";
 import {
   sanitizeWaitlistPayload,
   validateWaitlistForm,
@@ -34,7 +34,7 @@ export default function Form() {
   const [email, setEmail] = useState("");
   const [howDidYouHear, setHowDidYouHear] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const router = useRouter();
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
 
@@ -56,7 +56,8 @@ export default function Form() {
     try {
       const result = await submitWaitlistEntry(sanitized);
       if (!result.success) throw new Error(result.error);
-      router.push("/survey");
+      await sendWaitlistEmail({ email: sanitized.email, name: sanitized.name });
+      setShowSuccessModal(true);
     } catch {
       setErrors({ form: "Something went wrong. Please try again." });
     } finally {
@@ -156,6 +157,14 @@ export default function Form() {
           </div>
         </form>
       </div>
+
+      <SuccessModal
+        open={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        title="You're in"
+        message="Check your email for a confirmation and a link to a quick survey—your input helps us build this around you."
+        primaryAction={{ label: "Back to home", href: "/" }}
+      />
     </section>
   );
 }

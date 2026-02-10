@@ -340,12 +340,6 @@ export default function Survey() {
             >
               {isSubmitting ? "Submitting…" : "Submit survey"}
             </button>
-            <Link
-              href="/"
-              className="text-sm font-medium text-neutral-600 underline underline-offset-2 hover:text-neutral-800"
-            >
-              Skip and go home
-            </Link>
           </div>
         </form>
       </div>
