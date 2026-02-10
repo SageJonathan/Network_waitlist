@@ -40,11 +40,13 @@ export async function sendWaitlistEmail({
           </p>
 
           <p style="color: #404040; margin: 0 0 20px 0; font-size: 16px; line-height: 1.6;">
-            We're building this around the people on this list—what you're into, how you like to connect, what would actually make a difference for you. So if you've got five minutes, I'd love for you to fill out a short survey. Your answers go straight into what we build next. You're in the room.
-          </p>
+            We're building this around the people on this list—what you're into, how you like to connect, what would actually make a difference for you.
+            </p>
+            <p style="color: #404040; margin: 0 0 20px 0; font-size: 16px; line-height: 1.6;">So if you've got a minute, I'd love for you to fill out a short survey. Your answers go straight into what we build next. You're in the room.</p>
+          
 
           <div style="text-align: center; margin: 32px 0;">
-            <a href="https://survey.humanae.co/waitlist" style="display: inline-block; background: linear-gradient(135deg, #F89B37, #F4529B); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 9999px; font-weight: 600; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <a href="https://humanae.co/survey" style="display: inline-block; background: linear-gradient(135deg, #F89B37, #F4529B); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 9999px; font-weight: 600; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
               Fill out the survey
             </a>
           </div>
