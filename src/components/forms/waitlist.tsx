@@ -29,65 +29,14 @@ function EnvelopeIcon({ className }: { className?: string }) {
   );
 }
 
-function CalendarIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-      <path d="M16 2v4M8 2v4M3 10h18" />
-    </svg>
-  );
-}
-
-const ACTIVITIES = [
-  "Coffee & Walks",
-  "Fitness & Yoga",
-  "Food & Cooking",
-  "Art & Creativity",
-  "Hiking & Outdoors",
-  "Book Clubs",
-  "Sports & Games",
-  "Music & Events",
-];
-
-const AVAILABILITY_OPTIONS = [
-  { value: "", label: "Select your availability" },
-  { value: "weekday-mornings", label: "Weekday mornings" },
-  { value: "weekday-evenings", label: "Weekday evenings" },
-  { value: "weekends", label: "Weekends" },
-  { value: "flexible", label: "Flexible" },
-];
-
 export default function Form() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [selectedActivities, setSelectedActivities] = useState<Set<string>>(
-    new Set(),
-  );
-  const [availability, setAvailability] = useState("");
   const [howDidYouHear, setHowDidYouHear] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  function toggleActivity(activity: string) {
-    setSelectedActivities((prev) => {
-      const next = new Set(prev);
-      if (next.has(activity)) next.delete(activity);
-      else next.add(activity);
-      return next;
-    });
-  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -95,8 +44,6 @@ export default function Form() {
     const payload = {
       name,
       email,
-      activities: [...selectedActivities],
-      availability,
       howDidYouHear,
     };
     const { valid, errors: validationErrors } = validateWaitlistForm(payload);
@@ -180,51 +127,7 @@ export default function Form() {
           )}
           {!errors.email && <div className="mb-6" />}
 
-          {/* What activities interest you? */}
-          <label className="mb-3 block text-sm font-bold text-neutral-800">
-            What activities interest you? (Select all that apply)
-          </label>
-          <div className="mb-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {ACTIVITIES.map((activity) => {
-              const isSelected = selectedActivities.has(activity);
-              return (
-                <button
-                  key={activity}
-                  type="button"
-                  onClick={() => toggleActivity(activity)}
-                  className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
-                    isSelected
-                      ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
-                      : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
-                  }`}
-                >
-                  {activity}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* When are you usually available? */}
-          <label className="mb-2 block text-sm font-bold text-neutral-800">
-            When are you usually available?
-          </label>
-          <div className="relative mb-6">
-            <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400">
-              <CalendarIcon className="h-5 w-5" />
-            </span>
-            <select
-              value={availability}
-              onChange={(e) => setAvailability(e.target.value)}
-              className="w-full appearance-none rounded-xl border border-neutral-300 bg-white py-3 pl-12 pr-4 text-neutral-800 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 [&:invalid]:text-neutral-400"
-            >
-              {AVAILABILITY_OPTIONS.map((opt) => (
-                <option key={opt.value || "placeholder"} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
+         
           {/* How did you hear about us? */}
           <label className="mb-2 block text-sm font-bold text-neutral-800">
             How did you hear about us?

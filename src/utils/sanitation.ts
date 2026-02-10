@@ -97,17 +97,6 @@ export function validateWaitlistForm(data: WaitlistFormData): ValidationResult {
   const emailError = email(data.email);
   if (emailError) errors.email = emailError;
 
-  if (Array.isArray(data.activities)) {
-    const invalid = data.activities.some(
-      (a) => typeof a !== "string" || a.length > LIMITS.activityItem
-    );
-    if (invalid) errors.activities = "Invalid activities selection";
-  }
-
-  if (typeof data.availability === "string" && data.availability.length > LIMITS.availabilityValue) {
-    errors.availability = `Availability must be ${LIMITS.availabilityValue} characters or less`;
-  }
-
   const howError = maxLength(
     data.howDidYouHear ?? "",
     "How did you hear about us",
@@ -125,6 +114,16 @@ export type { SurveyFormData, WaitlistFormData } from "@/types/forms";
 
 export function validateSurveyForm(data: SurveyFormData): ValidationResult {
   const errors: Record<string, string> = {};
+
+  if (Array.isArray(data.activities)) {
+    const invalid = data.activities.some(
+      (a) => typeof a !== "string" || a.length > LIMITS.activityItem
+    );
+    if (invalid) errors.activities = "Invalid activities selection";
+  }
+  if (typeof data.availability === "string" && data.availability.length > LIMITS.availabilityValue) {
+    errors.availability = `Availability must be ${LIMITS.availabilityValue} characters or less`;
+  }
 
   if (data.networkingPain != null) {
     const e = maxLength(data.networkingPain, "Networking feedback", LIMITS.freeText);
@@ -172,14 +171,16 @@ export function sanitizeWaitlistPayload(data: WaitlistFormData): WaitlistFormDat
   return {
     name: sanitizeForDb(data.name, LIMITS.name),
     email: sanitizeForDb(data.email, LIMITS.email).toLowerCase(),
-    activities: sanitizeArrayForDb(data.activities ?? [], LIMITS.activityItem),
-    availability: sanitizeForDb(data.availability ?? "", LIMITS.availabilityValue),
     howDidYouHear: sanitizeForDb(data.howDidYouHear ?? "", LIMITS.howDidYouHear),
   };
 }
 
 export function sanitizeSurveyPayload(data: SurveyFormData): SurveyFormData {
   return {
+    activities: Array.isArray(data.activities)
+      ? sanitizeArrayForDb(data.activities, LIMITS.activityItem)
+      : undefined,
+    availability: data.availability != null ? sanitizeForDb(data.availability, LIMITS.availabilityValue) : undefined,
     networkingPainSelected: Array.isArray(data.networkingPainSelected)
       ? sanitizeArrayForDb(data.networkingPainSelected, LIMITS.activityItem)
       : undefined,

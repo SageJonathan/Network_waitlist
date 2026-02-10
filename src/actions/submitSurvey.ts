@@ -10,6 +10,8 @@ export type SubmitSurveyResult =
 
 function toSurveyRow(data: SurveyFormData): SurveyInsert {
   return {
+    ...(data.activities?.length ? { activities: data.activities } : {}),
+    availability: data.availability ?? null,
     ...(data.networkingPainSelected?.length
       ? { networking_selected: data.networkingPainSelected }
       : {}),

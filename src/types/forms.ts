@@ -3,12 +3,12 @@
 export type WaitlistFormData = {
   name: string;
   email: string;
-  activities: string[];
-  availability: string;
   howDidYouHear: string;
 };
 
 export type SurveyFormData = {
+  activities?: string[];
+  availability?: string;
   networkingPainSelected?: string[];
   networkingPain?: string;
   careerDevPain?: string;
