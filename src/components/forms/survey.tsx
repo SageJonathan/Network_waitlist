@@ -7,6 +7,25 @@ import { submitSurveyResponses } from "@/actions";
 import SuccessModal from "@/components/modals/success-modal";
 import { sanitizeSurveyPayload, validateSurveyForm } from "@/utils/sanitation";
 
+const ACTIVITIES = [
+  "Coffee & Walks",
+  "Fitness & Yoga",
+  "Food & Cooking",
+  "Art & Creativity",
+  "Hiking & Outdoors",
+  "Book Clubs",
+  "Sports & Games",
+  "Music & Events",
+];
+
+const AVAILABILITY_OPTIONS = [
+  { value: "", label: "Select your availability" },
+  { value: "weekday-mornings", label: "Weekday mornings" },
+  { value: "weekday-evenings", label: "Weekday evenings" },
+  { value: "weekends", label: "Weekends" },
+  { value: "flexible", label: "Flexible" },
+];
+
 const NETWORKING_PAIN_OPTIONS = [
   "Too transactional",
   "Boring / repetitive",
@@ -39,6 +58,10 @@ const FEATURE_OPTIONS = [
 ];
 
 export default function Survey() {
+  const [activitiesSelected, setActivitiesSelected] = useState<Set<string>>(
+    new Set(),
+  );
+  const [availability, setAvailability] = useState("");
   const [networkingPainSelected, setNetworkingPainSelected] = useState<
     Set<string>
   >(new Set());
@@ -54,6 +77,15 @@ export default function Survey() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  function toggleActivity(activity: string) {
+    setActivitiesSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(activity)) next.delete(activity);
+      else next.add(activity);
+      return next;
+    });
+  }
 
   function toggleNetworkingPain(option: string) {
     setNetworkingPainSelected((prev) => {
@@ -86,6 +118,8 @@ export default function Survey() {
     e.preventDefault();
     setErrors({});
     const payload = {
+      activities: [...activitiesSelected],
+      availability: availability || undefined,
       networkingPainSelected: [...networkingPainSelected],
       networkingPain,
       struggleSelected: [...struggleSelected],
@@ -142,107 +176,160 @@ export default function Survey() {
               {errors.form}
             </p>
           )}
-          {/* Networking events */}
-          <label className="mb-2 block text-sm font-bold text-neutral-800">
-            What frustrates you about networking events?
-          </label>
-          <p className="mb-3 text-xs text-neutral-500">
-            Optional — select any that apply
-          </p>
-          <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {NETWORKING_PAIN_OPTIONS.map((option) => {
-              const isSelected = networkingPainSelected.has(option);
-              return (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => toggleNetworkingPain(option)}
-                  className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
-                    isSelected
-                      ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
-                      : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
-                  }`}
-                >
-                  {option}
-                </button>
-              );
-            })}
-          </div>
-          <textarea
-            value={networkingPain}
-            onChange={(e) => setNetworkingPain(e.target.value)}
-            placeholder="Anything else? (optional)"
-            rows={2}
-            className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
-          />
 
-          {/* Career struggles */}
-          <label className="mb-2 block text-sm font-bold text-neutral-800">
-            Where do you struggle most in your career?
-          </label>
-          <p className="mb-3 text-xs text-neutral-500">
-            Optional — select any that apply
-          </p>
-          <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {STRUGGLE_OPTIONS.map((option) => {
-              const isSelected = struggleSelected.has(option);
-              return (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => toggleStruggle(option)}
-                  className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
-                    isSelected
-                      ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
-                      : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
-                  }`}
-                >
-                  {option}
-                </button>
-              );
-            })}
+          {/* Part 1: What you like */}
+          <div className="mb-10">
+            <label className="mb-2 block text-sm font-bold text-neutral-800">
+              Activities you enjoy
+            </label>
+            <p className="mb-3 text-xs text-neutral-500">
+              Optional — select any that apply
+            </p>
+            <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {ACTIVITIES.map((activity) => {
+                const isSelected = activitiesSelected.has(activity);
+                return (
+                  <button
+                    key={activity}
+                    type="button"
+                    onClick={() => toggleActivity(activity)}
+                    className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+                      isSelected
+                        ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
+                        : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
+                    }`}
+                  >
+                    {activity}
+                  </button>
+                );
+              })}
+            </div>
+            <label className="mb-2 block text-sm font-bold text-neutral-800">
+              When are you usually free?
+            </label>
+            <select
+              value={availability}
+              onChange={(e) => setAvailability(e.target.value)}
+              className="mb-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+              aria-invalid={!!errors.availability}
+            >
+              {AVAILABILITY_OPTIONS.map(({ value, label }) => (
+                <option key={value || "empty"} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            {errors.activities && (
+              <p className="mb-2 text-sm text-red-600">{errors.activities}</p>
+            )}
+            {errors.availability && (
+              <p className="mb-2 text-sm text-red-600">{errors.availability}</p>
+            )}
           </div>
-          <textarea
-            value={struggleOther}
-            onChange={(e) => setStruggleOther(e.target.value)}
-            placeholder="Anything else? (optional)"
-            rows={2}
-            className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
-          />
 
-          {/* Services / features */}
-          <label className="mb-2 block text-sm font-bold text-neutral-800">
-            What services or features would you want from a community like ours?
-          </label>
-          <p className="mb-3 text-xs text-neutral-500">
-            Optional — select any that appeal to you
-          </p>
-          <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {FEATURE_OPTIONS.map((option) => {
-              const isSelected = featureSelected.has(option);
-              return (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => toggleFeature(option)}
-                  className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
-                    isSelected
-                      ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
-                      : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
-                  }`}
-                >
-                  {option}
-                </button>
-              );
-            })}
+          {/* Part 2: What you don't */}
+          <div className="mb-10">
+            <label className="mb-2 block text-sm font-bold text-neutral-800">
+              What frustrates you about networking events?
+            </label>
+            <p className="mb-3 text-xs text-neutral-500">
+              Optional — select any that apply
+            </p>
+            <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {NETWORKING_PAIN_OPTIONS.map((option) => {
+                const isSelected = networkingPainSelected.has(option);
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => toggleNetworkingPain(option)}
+                    className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+                      isSelected
+                        ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
+                        : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
+                    }`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+            <textarea
+              value={networkingPain}
+              onChange={(e) => setNetworkingPain(e.target.value)}
+              placeholder="Anything else? (optional)"
+              rows={2}
+              className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+            />
+            <label className="mb-2 block text-sm font-bold text-neutral-800">
+              Where do you struggle most in your career?
+            </label>
+            <p className="mb-3 text-xs text-neutral-500">
+              Optional — select any that apply
+            </p>
+            <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {STRUGGLE_OPTIONS.map((option) => {
+                const isSelected = struggleSelected.has(option);
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => toggleStruggle(option)}
+                    className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+                      isSelected
+                        ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
+                        : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
+                    }`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+            <textarea
+              value={struggleOther}
+              onChange={(e) => setStruggleOther(e.target.value)}
+              placeholder="Anything else? (optional)"
+              rows={2}
+              className="mb-2 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+            />
           </div>
-          <textarea
-            value={featureOther}
-            onChange={(e) => setFeatureOther(e.target.value)}
-            placeholder="Something else you'd love to see? (optional)"
-            rows={2}
-            className="mb-8 w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
-          />
+
+          {/* Part 3: What you want */}
+          <div className="mb-8">
+            <label className="mb-2 block text-sm font-bold text-neutral-800">
+              Services or features you’d want
+            </label>
+            <p className="mb-3 text-xs text-neutral-500">
+              Optional — select any that appeal to you
+            </p>
+            <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {FEATURE_OPTIONS.map((option) => {
+                const isSelected = featureSelected.has(option);
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => toggleFeature(option)}
+                    className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+                      isSelected
+                        ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
+                        : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
+                    }`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+            <textarea
+              value={featureOther}
+              onChange={(e) => setFeatureOther(e.target.value)}
+              placeholder="Something else you'd love to see? (optional)"
+              rows={2}
+              className="w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+            />
+          </div>
 
           {/* Submit */}
           <div className="flex flex-col items-center gap-4">
@@ -253,12 +340,6 @@ export default function Survey() {
             >
               {isSubmitting ? "Submitting…" : "Submit survey"}
             </button>
-            <Link
-              href="/"
-              className="text-sm font-medium text-neutral-600 underline underline-offset-2 hover:text-neutral-800"
-            >
-              Skip and go home
-            </Link>
           </div>
         </form>
       </div>
