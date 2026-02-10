@@ -52,7 +52,7 @@ export async function sendWaitlistEmail({
           </div>
 
           <p style="color: #404040; margin: 24px 0 0 0; font-size: 16px; line-height: 1.6; text-align: center;">
-            Can't wait to see you when we're live. Until then—thanks for being part of this.
+            Can't wait to see you when we're live. <br /> Until then—thanks for being part of this.
           </p>
         </div>
 
