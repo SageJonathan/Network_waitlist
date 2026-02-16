@@ -162,7 +162,7 @@ export default function Form() {
         open={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
         title="You're in"
-        message="Check your email for a confirmation and a link to a quick survey—your input helps us build this around you."
+        message="Check your email for a confirmation and a link to a quick survey—your input helps us build this around you. Please check your spam folder if you don't see it."
         primaryAction={{ label: "Back to home", href: "/" }}
       />
     </section>

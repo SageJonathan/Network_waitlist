@@ -7,6 +7,7 @@ const LIMITS = {
   availabilityValue: 100,
   freeText: 2000,
   activityItem: 100,
+  jobTitle: 200,
 } as const;
 
 // Prevent XSS attacks
@@ -124,6 +125,16 @@ export function validateSurveyForm(data: SurveyFormData): ValidationResult {
   if (typeof data.availability === "string" && data.availability.length > LIMITS.availabilityValue) {
     errors.availability = `Availability must be ${LIMITS.availabilityValue} characters or less`;
   }
+  if (typeof data.industry === "string" && data.industry.length > LIMITS.availabilityValue) {
+    errors.industry = `Industry must be ${LIMITS.availabilityValue} characters or less`;
+  }
+  if (data.jobTitle != null) {
+    const e = maxLength(data.jobTitle, "Job title", LIMITS.jobTitle);
+    if (e) errors.jobTitle = e;
+  }
+  if (typeof data.seniority === "string" && data.seniority.length > LIMITS.availabilityValue) {
+    errors.seniority = `Seniority must be ${LIMITS.availabilityValue} characters or less`;
+  }
 
   if (data.networkingPain != null) {
     const e = maxLength(data.networkingPain, "Networking feedback", LIMITS.freeText);
@@ -181,6 +192,9 @@ export function sanitizeSurveyPayload(data: SurveyFormData): SurveyFormData {
       ? sanitizeArrayForDb(data.activities, LIMITS.activityItem)
       : undefined,
     availability: data.availability != null ? sanitizeForDb(data.availability, LIMITS.availabilityValue) : undefined,
+    industry: data.industry != null ? sanitizeForDb(data.industry, LIMITS.availabilityValue) : undefined,
+    jobTitle: data.jobTitle != null ? sanitizeForDb(data.jobTitle, LIMITS.jobTitle) : undefined,
+    seniority: data.seniority != null ? sanitizeForDb(data.seniority, LIMITS.availabilityValue) : undefined,
     networkingPainSelected: Array.isArray(data.networkingPainSelected)
       ? sanitizeArrayForDb(data.networkingPainSelected, LIMITS.activityItem)
       : undefined,

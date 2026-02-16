@@ -9,6 +9,9 @@ export type WaitlistFormData = {
 export type SurveyFormData = {
   activities?: string[];
   availability?: string;
+  industry?: string;
+  jobTitle?: string;
+  seniority?: string;
   networkingPainSelected?: string[];
   networkingPain?: string;
   careerDevPain?: string;
