@@ -11,7 +11,6 @@ const FORMATS = [
     "Ask your questions directly to founders, artists, athletes, activists, and changemakers in an intimate setting.",
     image: "/fireqa.webp",
     alt: "People gathered around a campfire for conversation",
-    color: "#EA580C",
   },
   {
     id: "affinity",
@@ -20,7 +19,6 @@ const FORMATS = [
       "Find support and community with people who share your identity or experiences — from women's groups to shared interests and beyond.",
     image: "/affinity.webp",
     alt: "Diverse group of friends together",
-    color: "#7C3AED",
   },
   {
     id: "warm-intros",
@@ -29,7 +27,6 @@ const FORMATS = [
       "Meet 1-on-1 with people who can help you grow, whether in your career or personal life.",
     image: "/warmintro.webp",
     alt: "Two people meeting and shaking hands",
-    color: "#0D9488",
   },
 ] as const;
 
@@ -50,7 +47,7 @@ export default function Formats() {
         </header>
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3 lg:mt-16 lg:gap-8">
-          {FORMATS.map(({ id, title, description, image, alt, color }) => (
+          {FORMATS.map(({ id, title, description, image, alt }) => (
             <div
               key={id}
               className="group flex flex-col rounded-2xl border border-neutral-200/80 bg-neutral-50/80 overflow-hidden text-center shadow-sm transition-all duration-200 hover:scale-[1.02] hover:border-neutral-300/80 hover:bg-white hover:shadow-md"
@@ -62,11 +59,6 @@ export default function Formats() {
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                <div
-                  className="absolute inset-0 mix-blend-multiply opacity-30"
-                  style={{ backgroundColor: color }}
-                  aria-hidden
                 />
               </div>
               <div className="flex flex-col p-6 md:p-8">
