@@ -12,6 +12,9 @@ function toSurveyRow(data: SurveyFormData): SurveyInsert {
   return {
     ...(data.activities?.length ? { activities: data.activities } : {}),
     availability: data.availability ?? null,
+    industry: data.industry ?? null,
+    job_title: data.jobTitle ?? null,
+    seniority: data.seniority ?? null,
     ...(data.networkingPainSelected?.length
       ? { networking_selected: data.networkingPainSelected }
       : {}),

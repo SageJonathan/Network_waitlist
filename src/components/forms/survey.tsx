@@ -8,14 +8,14 @@ import SuccessModal from "@/components/modals/success-modal";
 import { sanitizeSurveyPayload, validateSurveyForm } from "@/utils/sanitation";
 
 const ACTIVITIES = [
-  "Coffee & Walks",
-  "Fitness & Yoga",
-  "Food & Cooking",
-  "Art & Creativity",
-  "Hiking & Outdoors",
-  "Book Clubs",
-  "Sports & Games",
-  "Music & Events",
+  "Sport clubs",
+  "Intimate fireside Q&A",
+  "Workshops",
+  "Women's only events",
+  "Skill swaps / peer learning",
+  "Book clubs",
+  "Speaker series / talks",
+  "Affinity / identity-based events",
 ];
 
 const AVAILABILITY_OPTIONS = [
@@ -24,6 +24,33 @@ const AVAILABILITY_OPTIONS = [
   { value: "weekday-evenings", label: "Weekday evenings" },
   { value: "weekends", label: "Weekends" },
   { value: "flexible", label: "Flexible" },
+];
+
+const INDUSTRY_OPTIONS = [
+  { value: "", label: "Select your industry" },
+  { value: "technology", label: "Technology" },
+  { value: "finance", label: "Finance" },
+  { value: "healthcare", label: "Healthcare" },
+  { value: "energy", label: "Energy" },
+  { value: "education", label: "Education" },
+  { value: "creative", label: "Creative / Media" },
+  { value: "retail", label: "Retail" },
+  { value: "other", label: "Other" },
+];
+
+const SENIORITY_OPTIONS = [
+  { value: "", label: "Select your seniority" },
+  { value: "new-grad", label: "New grad" },
+  { value: "junior", label: "Junior" },
+  { value: "mid-level", label: "Mid level" },
+  { value: "senior", label: "Senior" },
+  { value: "staff-principal", label: "Staff / Principal" },
+  { value: "lead-manager", label: "Lead / Manager" },
+  { value: "director", label: "Director" },
+  { value: "vp", label: "VP" },
+  { value: "c-level", label: "C-level" },
+  { value: "founder", label: "Founder" },
+  { value: "other", label: "Other" },
 ];
 
 const NETWORKING_PAIN_OPTIONS = [
@@ -50,10 +77,11 @@ const STRUGGLE_OPTIONS = [
 const FEATURE_OPTIONS = [
   "Mentorship",
   "Skill swaps",
-  "Accountability buddies",
-  "Career workshops",
-  "Community events",
   "Job / role support",
+  "Accountability buddies",
+  "Community events",
+  "Discussions / Forums",
+  "Job board / role alerts",
   "Other",
 ];
 
@@ -62,6 +90,9 @@ export default function Survey() {
     new Set(),
   );
   const [availability, setAvailability] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [seniority, setSeniority] = useState("");
   const [networkingPainSelected, setNetworkingPainSelected] = useState<
     Set<string>
   >(new Set());
@@ -120,6 +151,9 @@ export default function Survey() {
     const payload = {
       activities: [...activitiesSelected],
       availability: availability || undefined,
+      industry: industry || undefined,
+      jobTitle: jobTitle || undefined,
+      seniority: seniority || undefined,
       networkingPainSelected: [...networkingPainSelected],
       networkingPain,
       struggleSelected: [...struggleSelected],
@@ -177,57 +211,7 @@ export default function Survey() {
             </p>
           )}
 
-          {/* Part 1: What you like */}
-          <div className="mb-10">
-            <label className="mb-2 block text-sm font-bold text-neutral-800">
-              Activities you enjoy
-            </label>
-            <p className="mb-3 text-xs text-neutral-500">
-              Optional — select any that apply
-            </p>
-            <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {ACTIVITIES.map((activity) => {
-                const isSelected = activitiesSelected.has(activity);
-                return (
-                  <button
-                    key={activity}
-                    type="button"
-                    onClick={() => toggleActivity(activity)}
-                    className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
-                      isSelected
-                        ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
-                        : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
-                    }`}
-                  >
-                    {activity}
-                  </button>
-                );
-              })}
-            </div>
-            <label className="mb-2 block text-sm font-bold text-neutral-800">
-              When are you usually free?
-            </label>
-            <select
-              value={availability}
-              onChange={(e) => setAvailability(e.target.value)}
-              className="mb-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
-              aria-invalid={!!errors.availability}
-            >
-              {AVAILABILITY_OPTIONS.map(({ value, label }) => (
-                <option key={value || "empty"} value={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
-            {errors.activities && (
-              <p className="mb-2 text-sm text-red-600">{errors.activities}</p>
-            )}
-            {errors.availability && (
-              <p className="mb-2 text-sm text-red-600">{errors.availability}</p>
-            )}
-          </div>
-
-          {/* Part 2: What you don't */}
+          {/* Part 3: What you don't */}
           <div className="mb-10">
             <label className="mb-2 block text-sm font-bold text-neutral-800">
               What frustrates you about networking events?
@@ -295,7 +279,6 @@ export default function Survey() {
             />
           </div>
 
-          {/* Part 3: What you want */}
           <div className="mb-8">
             <label className="mb-2 block text-sm font-bold text-neutral-800">
               Services or features you’d want
@@ -321,6 +304,115 @@ export default function Survey() {
                   </button>
                 );
               })}
+            </div>
+
+            {/* Part 3 */}
+            <div className="mb-10">
+              <label className="mb-2 block text-sm font-bold text-neutral-800">
+                Industry
+              </label>
+              <select
+                value={industry}
+                onChange={(e) => setIndustry(e.target.value)}
+                className="mb-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+                aria-invalid={!!errors.industry}
+              >
+                {INDUSTRY_OPTIONS.map(({ value, label }) => (
+                  <option key={value || "empty"} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+              {errors.industry && (
+                <p className="mb-4 text-sm text-red-600">{errors.industry}</p>
+              )}
+              <label className="mb-2 block text-sm font-bold text-neutral-800">
+                Job title or role
+              </label>
+              <p className="mb-3 text-xs text-neutral-500">
+                Optional — e.g. Product Manager, Designer, Engineer
+              </p>
+              <input
+                type="text"
+                value={jobTitle}
+                onChange={(e) => setJobTitle(e.target.value)}
+                placeholder="Your job title"
+                className="mb-4 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+                aria-invalid={!!errors.jobTitle}
+              />
+              {errors.jobTitle && (
+                <p className="mb-2 text-sm text-red-600">{errors.jobTitle}</p>
+              )}
+              <label className="mb-2 block text-sm font-bold text-neutral-800">
+                Seniority level
+              </label>
+              <select
+                value={seniority}
+                onChange={(e) => setSeniority(e.target.value)}
+                className="w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+                aria-invalid={!!errors.seniority}
+              >
+                {SENIORITY_OPTIONS.map(({ value, label }) => (
+                  <option key={value || "empty"} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+              {errors.seniority && (
+                <p className="mb-2 text-sm text-red-600">{errors.seniority}</p>
+              )}
+            </div>
+
+            {/* Part 2*/}
+            <div className="mb-10">
+              <label className="mb-2 block text-sm font-bold text-neutral-800">
+                What kinds of events would you want?
+              </label>
+              <p className="mb-3 text-xs text-neutral-500">
+                Optional — select any that appeal to you
+              </p>
+              <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {ACTIVITIES.map((activity) => {
+                  const isSelected = activitiesSelected.has(activity);
+                  return (
+                    <button
+                      key={activity}
+                      type="button"
+                      onClick={() => toggleActivity(activity)}
+                      className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+                        isSelected
+                          ? "border-[#F89B37] bg-[#FFEEDD] text-neutral-800"
+                          : "border-neutral-300 bg-neutral-50 text-neutral-700 hover:border-neutral-400"
+                      }`}
+                    >
+                      {activity}
+                    </button>
+                  );
+                })}
+              </div>
+              <label className="mb-2 block text-sm font-bold text-neutral-800">
+                When are you usually free?
+              </label>
+              <select
+                value={availability}
+                onChange={(e) => setAvailability(e.target.value)}
+                className="mb-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-800 focus:border-[#F89B37] focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30"
+                aria-invalid={!!errors.availability}
+              >
+                {AVAILABILITY_OPTIONS.map(({ value, label }) => (
+                  <option key={value || "empty"} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+              {errors.activities && (
+                <p className="mb-2 text-sm text-red-600">{errors.activities}</p>
+              )}
+              {errors.availability && (
+                <p className="mb-2 text-sm text-red-600">
+                  {errors.availability}
+                </p>
+              )}
             </div>
             <textarea
               value={featureOther}

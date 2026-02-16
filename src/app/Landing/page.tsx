@@ -1,6 +1,7 @@
 import CTA from "@/components/landing/cta";
 import Eng1 from "@/components/landing/eng1";
 import Eng2 from "@/components/landing/eng2";
+import Formats from "@/components/landing/formats";
 import Eng3 from "@/components/landing/eng3";
 import Eng4 from "@/components/landing/eng4";
 import Footer from "@/components/landing/footer";
@@ -12,6 +13,7 @@ export default function Landing() {
     <div>
       <Hero />
       <Eng1 />
+      <Formats />
       <Eng2 />
       <Eng3 />
       <Eng4 />
