@@ -36,8 +36,7 @@ export default function Eng1() {
             What&apos;s your <span className="text-[#F56565]">thing?</span>
           </h2>
           <p className="mt-4 text-base font-normal leading-relaxed text-neutral-700 md:text-[1.0625rem]">
-            From sunrise hikes to late-night board games — we&apos;ve got you
-            covered.
+          No more "meh" activities — find the ones you actually love.
           </p>
         </header>
 

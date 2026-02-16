@@ -3,19 +3,19 @@ const steps = [
     id: 1,
     title: "Pick your vibe",
     description:
-      "Choose activities that match your interests and energy",
+      "Choose formats that match your interests and energy",
   },
   {
     id: 2,
     title: "Join a club or event",
     description:
-      "Connect with others who are just as excited as you are",
+      "Sign up for experiences that excite you",
   },
   {
     id: 3,
     title: "Show up & shine",
     description:
-      "Meet in person, have fun, and build a real network",
+      "Meet amazing people in person and build real relationships",
   },
 ] as const;
 
