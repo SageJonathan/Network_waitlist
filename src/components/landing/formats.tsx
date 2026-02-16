@@ -6,7 +6,7 @@ import Image from "next/image";
 const FORMATS = [
   {
     id: "fireside",
-    title: "Fireside chat",
+    title: "Fireside chats",
     description:
     "Ask your questions directly to founders, artists, athletes, activists, and changemakers in an intimate setting.",
     image: "/fireqa.webp",
