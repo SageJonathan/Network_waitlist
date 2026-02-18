@@ -182,6 +182,7 @@ export function sanitizeWaitlistPayload(data: WaitlistFormData): WaitlistFormDat
   return {
     name: sanitizeForDb(data.name, LIMITS.name),
     email: sanitizeForDb(data.email, LIMITS.email).toLowerCase(),
+    city: sanitizeForDb(data.city, LIMITS.name),  
     howDidYouHear: sanitizeForDb(data.howDidYouHear ?? "", LIMITS.howDidYouHear),
   };
 }
