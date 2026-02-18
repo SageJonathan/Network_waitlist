@@ -31,6 +31,7 @@ function EnvelopeIcon({ className }: { className?: string }) {
 
 export default function Form() {
   const [name, setName] = useState("");
+  const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
   const [howDidYouHear, setHowDidYouHear] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,6 +44,7 @@ export default function Form() {
     setErrors({});
     const payload = {
       name,
+      city,
       email,
       howDidYouHear,
     };
@@ -127,6 +129,29 @@ export default function Form() {
             </p>
           )}
           {!errors.email && <div className="mb-6" />}
+
+            {/* City */}
+            <label className="mb-2 block text-sm font-bold text-neutral-800">
+            City <span className="text-red-600">*</span>
+          </label>
+          <input
+            type="text"
+            required
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Calgary"
+            aria-invalid={!!errors.city}
+            aria-describedby={errors.city ? "city-error" : undefined}
+            className={`mb-1 w-full rounded-xl border bg-white px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#F89B37]/30 ${
+              errors.city ? "border-red-500" : "border-neutral-300"
+            }`}
+          />
+          {errors.city && (
+            <p id="city-error" className="mb-6 text-sm text-red-600">
+              {errors.city}
+            </p>
+          )}
+          {!errors.city && <div className="mb-6" />}
 
          
           {/* How did you hear about us? */}

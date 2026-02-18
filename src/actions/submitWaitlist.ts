@@ -11,6 +11,7 @@ export type SubmitWaitlistResult =
 function toWaitlistRow(data: WaitlistFormData): WaitlistInsert {
   return {
     name: data.name,
+    city: data.city,
     email: data.email,
     funnel: data.howDidYouHear ?? "",
   };

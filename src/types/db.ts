@@ -2,6 +2,7 @@
 export type WaitlistInsert = {
   name: string;
   email: string;
+  city: string;
   funnel?: string;
 };
 

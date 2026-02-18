@@ -3,6 +3,7 @@
 export type WaitlistFormData = {
   name: string;
   email: string;
+  city: string;
   howDidYouHear: string;
 };
 
