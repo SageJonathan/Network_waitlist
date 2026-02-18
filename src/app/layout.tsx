@@ -12,15 +12,15 @@ const baseUrl ="https://humanae.co";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "Humanae – Networking that doesn't feel like work",
+  title: "Humanae – Networking without the work",
   description:
-    "Meet amazing people doing things you actually love. Join the waitlist for our Calgary launch.",
-  keywords: ["Humanae", "networking", "Calgary", "community", "waitlist"],
+    "Meet amazing people doing things you actually love.",
+  keywords: ["Humanae", "networking", "Calgary", "community", "events", "clubs", "matches", "workshops", "warm introductions"],
   authors: [{ name: "Humanae" }],
   openGraph: {
-    title: "Humanae – Networking that doesn't feel like work",
+    title: "Humanae – Networking without the work",
     description:
-      "Meet amazing people doing things you actually love. Join the waitlist for our Calgary launch.",
+      "Meet amazing people doing things you actually love.",
     url: baseUrl,
     siteName: "Humanae",
     locale: "en_CA",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Humanae – Networking that doesn't feel like work",
+    title: "Humanae – Networking without the work",
     description:
-      "Meet amazing people doing things you actually love. Join the waitlist for our Calgary launch.",
+      "Meet amazing people doing things you actually love.",
   },
   icons: {
     icon: [{ url: "/Favicon.png", type: "image/png" }],
