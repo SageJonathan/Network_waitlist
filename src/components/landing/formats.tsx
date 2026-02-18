@@ -21,6 +21,22 @@ const FORMATS = [
     alt: "Diverse group of friends together",
   },
   {
+    id: "popup",
+    title: "Popup events",
+    description:
+      "Join us for one-time events that bring people together for an out of the norm experience.",
+    image: "/popup.webp",
+    alt: "Two people meeting and shaking hands",
+  },
+  {
+    id: "workshops",
+    title: "Workshops",
+    description:
+      "Meet 1-on-1 with people who can help you grow, whether in your career or personal life.",
+    image: "/workshops.webp",
+    alt: "Two people meeting and shaking hands",
+  },
+  {
     id: "warm-intros",
     title: "Warm introductions",
     description:
