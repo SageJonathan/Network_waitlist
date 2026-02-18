@@ -46,9 +46,19 @@ const FORMATS = [
   },
 ] as const;
 
+
 export default function Formats() {
+  const duplicated = [...FORMATS, ...FORMATS];
+
   return (
     <section className="bg-white px-6 py-16 md:py-20 lg:py-24">
+      <style>{`
+        @keyframes marquee-rtl {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+
       <div className="mx-auto max-w-6xl">
         <header className="mx-auto max-w-2xl text-center">
           <h2 className="text-[1.75rem] font-bold leading-tight text-neutral-900 md:text-[2rem] lg:text-[2.25rem]">
@@ -58,15 +68,21 @@ export default function Formats() {
             </span>
           </h2>
           <p className="mt-4 text-base font-normal leading-relaxed text-neutral-700 md:text-[1.0625rem]">
-          We create experiences that empower you to take control.
+            We create experiences that empower you to take control.
           </p>
         </header>
+      </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3 lg:mt-16 lg:gap-8">
-          {FORMATS.map(({ id, title, description, image, alt }) => (
+      {/* Full-bleed marquee outside max-w container */}
+      <div className="mt-12 overflow-hidden lg:mt-16" aria-hidden>
+        <div
+          className="flex w-max gap-6 py-4"
+          style={{ animation: "marquee-rtl 40s linear infinite" }}
+        >
+          {duplicated.map(({ id, title, description, image, alt }, i) => (
             <div
-              key={id}
-              className="group flex flex-col rounded-2xl border border-neutral-200/80 bg-neutral-50/80 overflow-hidden text-center shadow-sm transition-all duration-200 hover:scale-[1.02] hover:border-neutral-300/80 hover:bg-white hover:shadow-md"
+              key={`${id}-${i}`}
+              className="group flex w-72 shrink-0 flex-col rounded-2xl border border-neutral-200/80 bg-neutral-50/80 overflow-hidden text-center shadow-sm transition-all duration-200 hover:border-neutral-300/80 hover:bg-white hover:shadow-md md:w-80"
             >
               <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden">
                 <Image
@@ -74,12 +90,12 @@ export default function Formats() {
                   alt={alt}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="320px"
                 />
               </div>
-              <div className="flex flex-col p-6 md:p-8">
+              <div className="flex flex-col p-6">
                 <h3 className="text-lg font-bold text-neutral-900">{title}</h3>
-                <p className="mt-2 max-w-sm text-center text-base font-normal leading-relaxed text-neutral-600 md:mx-auto">
+                <p className="mt-2 text-center text-sm font-normal leading-relaxed text-neutral-600">
                   {description}
                 </p>
               </div>
