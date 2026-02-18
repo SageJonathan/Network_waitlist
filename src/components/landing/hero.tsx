@@ -125,7 +125,7 @@ export default function Hero() {
               </span>
             </h1>
             <p className="max-w-lg text-base font-normal leading-relaxed text-neutral-700 md:mx-auto lg:max-w-xl lg:text-lg lg:leading-relaxed">
-            Connect with people who inspire you — through clubs, intimate conversations, supportive communities, and genuine introductions. No networking BS, just real relationships.
+            Events, clubs, monthly matches, and communities built around what you love — because the best career opportunities come from people who actually know you.
             </p>
             <div className="flex flex-col items-center gap-4">
               <Link
