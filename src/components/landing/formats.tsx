@@ -32,7 +32,7 @@ const FORMATS = [
     id: "workshops",
     title: "Workshops",
     description:
-      "Meet 1-on-1 with people who can help you grow, whether in your career or personal life.",
+      "Learn new skills and connect with like-minded people in hands-on sessions.",
     image: "/workshops.webp",
     alt: "Two people meeting and shaking hands",
   },
